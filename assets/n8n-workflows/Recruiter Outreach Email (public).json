@@ -1,0 +1,257 @@
+{
+  "name": "Recruiter Outreach Email (public)",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "374f5c20-f906-40bd-95b1-bfe27754f9e6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b976c1d3-f512-43d1-941a-9e4ae46ee2e7",
+              "name": "recipientEmail",
+              "value": "[Your Email]",
+              "type": "string"
+            },
+            {
+              "id": "77a91b3f-af9a-4263-a781-433bc38f2013",
+              "name": "recipientName",
+              "value": "[Recruiter Name]",
+              "type": "string"
+            },
+            {
+              "id": "9570126f-f33b-458a-8596-e98937839e83",
+              "name": "jobTitle",
+              "value": "[Your Job Title]",
+              "type": "string"
+            },
+            {
+              "id": "c14fcbbc-f80d-458a-8351-8c526500ae7d",
+              "name": "jobId",
+              "value": "[Job ID]",
+              "type": "string"
+            },
+            {
+              "id": "fe0ce6db-6a68-436e-8569-36c27f26afa2",
+              "name": "jdLink",
+              "value": "[Linkedin Job ID]",
+              "type": "string"
+            },
+            {
+              "id": "a00ea594-7f99-46aa-b184-cebed452d961",
+              "name": "yourLinkedIn",
+              "value": "[Your Linkedin Profile]",
+              "type": "string"
+            },
+            {
+              "id": "a1a2c568-6512-4da1-a256-7abacbdf188f",
+              "name": "yourPortfolio",
+              "value": "[Job Portfolio Link]",
+              "type": "string"
+            },
+            {
+              "id": "0a545a26-22b1-4e0a-9cee-2e8f7f73c7fd",
+              "name": "yourName",
+              "value": "[Your Name]",
+              "type": "string"
+            },
+            {
+              "id": "2f52340a-c82a-46c9-8567-887e7e6cf7fc",
+              "name": "yourStatus",
+              "value": "[Your Visa Status]",
+              "type": "string"
+            },
+            {
+              "id": "31c3925f-2fcf-4f44-bb88-e64a1dafd0b7",
+              "name": "yourTagline",
+              "value": "[Your Tag Line (eg: .NET Lead • AI/Automation • Cloud)]",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "3fb01809-4c08-4686-9101-e09b150579ac",
+      "name": "Set Variables"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Use this Function node in n8n to avoid \"\\n\" in output\n// The trick: wrap HTML in backticks with no indentation or line breaks\n\nreturn [{\n  to: $json.recipientEmail, // pass recipient email to next node\n  subject: `Application for ${$json.jobTitle} – Job ID ${$json.jobId}`,\n  htmlBody: `<div style=\"font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1a1a1a;line-height:1.6\"><p>Hi ${$json.recipientName},</p><p>Good morning!</p><p>I came across the <strong>${$json.jobTitle}</strong> position (Job ID: <strong>${$json.jobId}</strong>) on your portal and I’m very interested in exploring this opportunity. As a <strong>${$json.yourStatus}</strong> with strong experience in .NET and enterprise application development, I believe my background aligns well with the role.</p><p><strong>Job Description:</strong><br><a href=\"${$json.jdLink}\" target=\"_blank\" rel=\"noopener\">View Job Posting</a></p><p><strong>My Profiles:</strong><br>LinkedIn: <a href=\"${$json.yourLinkedIn}\" target=\"_blank\" rel=\"noopener\">${$json.yourLinkedIn}</a><br>Portfolio: <a href=\"${$json.yourPortfolio}\" target=\"_blank\" rel=\"noopener\">${$json.yourPortfolio}</a></p><p>Even if this role isn’t the best fit right now, I’d be glad to stay in touch and explore future opportunities with your team.</p><p>Thank you for your time and consideration. I look forward to your response.</p><p>Best regards,<br><strong>${$json.yourName}</strong><br><span style=\"color:#555\">${$json.yourTagline}</span><br><a href=\"${$json.yourLinkedIn}\" target=\"_blank\" rel=\"noopener\">LinkedIn</a> • <a href=\"${$json.yourPortfolio}\" target=\"_blank\" rel=\"noopener\">Portfolio</a></p></div>`\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        192,
+        0
+      ],
+      "id": "b0f1cf4a-1cee-47be-ba66-38aea518667e",
+      "name": "Set Email Subject, Body"
+    },
+    {
+      "parameters": {
+        "fromEmail": "admin@thiek.me",
+        "toEmail": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "html": "={{ $json.htmlBody }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "743541ac-79ec-46cb-8be4-8b9aa03d3cea",
+      "name": "Send email",
+      "webhookId": "97a31a72-ba69-47d9-bf74-ce33360f16d2",
+      "credentials": {
+        "smtp": {
+          "id": "IZg8ofALAjIUIusU",
+          "name": "SMTP account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Configure your email SMTP Settings here\n\n1) Basic Settings\n\nFrom Email: Your email address (must match your SMTP credentials in most cases).\n\nTo: Use a variable, e.g. ={{$json.to}} from your Function node.\n\nSubject: ={{$json.subject}}\n\nHTML Content: ={{$json.htmlBody}}\n\nText Content (optional fallback): ={{$json.textBody}}\n\n2) SMTP Credentials\n\nWhen you edit the node, you’ll see Credentials → SMTP. Add new credentials and fill:\n\nHost: (depends on provider)\n\nGmail: smtp.gmail.com\n\nOutlook/Office365: smtp.office365.com\n\nAWS SES: email-smtp.<region>.amazonaws.com\n\nPort:\n\n465 (SSL) or 587 (TLS/STARTTLS)\n\nUser: Your full email address or SMTP username.\n\nPassword: Your email app password or SMTP password.\n\n3) Special Notes per Provider\n\nGmail:\n\nMust enable App Passwords (requires 2FA).\n\nUse smtp.gmail.com, port 465 (SSL) or 587 (TLS).\n\nOutlook/Office365:\n\nUse smtp.office365.com, port 587.\n\nUsername = full email, password = normal login password (or app password if enforced).\n\nAWS SES:\n\nRegion-specific host (e.g., email-smtp.us-east-1.amazonaws.com).\n\nCreate SMTP user in SES console → copy credentials.\n",
+        "height": 1072,
+        "width": 592,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        656,
+        -144
+      ],
+      "id": "4176df1a-5320-41da-b249-48b7d620e5cd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Configure a Cron Node (Scheduler Trigger) here or You may trigger this node Manually when you need to trigger sending an email\n",
+        "height": 96,
+        "width": 272,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        160
+      ],
+      "id": "359f6480-abb2-44e2-8c8a-525b9588d9df",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "Set variables to \nsend with email here",
+        "height": 96,
+        "width": 160,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        160
+      ],
+      "id": "07f8f0a5-d16c-4392-9e13-f2a14bdda7e0",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "Set email body and subject with the pre-configured variables from the previous node",
+        "height": 96,
+        "width": 192,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        192,
+        160
+      ],
+      "id": "96f232cf-5636-4adb-8e2b-47019bbe60c6",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "Send email with your email host",
+        "height": 80,
+        "width": 192,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        416,
+        160
+      ],
+      "id": "0bd42c12-3936-4bfa-9fc6-077d68dd758e",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Set Email Subject, Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Email Subject, Body": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "190af218-dcc8-4054-bad6-be65eb0c1724",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1ed57668977425d5dfc3bb2aebaabe970ba1fa6fb8aca58475fbcd4804380cca"
+  },
+  "id": "0E9501rwp17Rd99J",
+  "tags": []
+}
