@@ -1,0 +1,250 @@
+---
+title: "LinkedIn Feed Filter Suite"
+date: "2025-10-13"
+description: "I got tired of cringe posts. So I built this and created 4 free browser scripts that filter your entire feed by keywords. Block what you hate. Show only what matters."
+tags: ["Javascript", "Linkedin", "Tampermonkey"]
+---
+
+# 🎯 LinkedIn Feed Filter Suite
+
+> Take control of your LinkedIn feed. Filter out noise, spotlight what matters.
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0-green.svg)
+![Tampermonkey](https://img.shields.io/badge/Tampermonkey-Compatible-orange.svg)
+
+## 🚀 Overview
+
+A collection of powerful Tampermonkey scripts to transform your LinkedIn feed from overwhelming to optimized. Stop scrolling through irrelevant posts and start focusing on content that actually matters to your career.
+
+## ✨ Features
+
+### 📦 Four Powerful Scripts
+
+1. **🚫 Blacklist Filter** - Block posts by keywords
+2. **✅ Whitelist Filter** - Show ONLY posts matching your interests  
+3. **🌟 Highlight Filter** - Green-highlight relevant posts, hide the rest
+4. **🔥 Top Voted Filter** - Surface trending posts from past 24h with high engagement
+
+## 🎬 Demo
+
+[![Watch Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+*"From 100 posts to 10 that matter - in seconds."*
+
+## 📥 Installation
+
+### Prerequisites
+- Install [Tampermonkey](https://www.tampermonkey.net/) browser extension
+  - [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+  - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+  - [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
+
+### Quick Start
+
+1. **Choose Your Filter**
+   - Pick the script that matches your needs (or use multiple!)
+
+2. **Install Script**
+   - Open Tampermonkey dashboard
+   - Click "Create new script"
+   - Copy & paste the script code
+   - Save (Ctrl+S or Cmd+S)
+
+3. **Configure Keywords**
+   - Edit the `BLOCKED_KEYWORDS` or `ALLOWED_KEYWORDS` array
+   - Add your topics (one per line)
+   - Save and refresh LinkedIn
+
+4. **Enjoy Your Clean Feed!** 🎉
+
+## 📋 Scripts Overview
+
+### 1. 🚫 Blacklist Filter
+**Best for:** Hiding specific topics you don't want to see
+
+```javascript
+const BLOCKED_KEYWORDS = [
+    'hiring',
+    'crypto',
+    'NFT',
+    'hustle culture'
+];
+```
+
+**Features:**
+- Red border on blocked posts
+- Visual "BLOCKED" label
+- Side panel showing what's been filtered
+- Option to hide completely or just highlight
+
+[📄 View Script](../scripts/blacklist-filter.js)
+
+---
+
+### 2. ✅ Whitelist Filter  
+**Best for:** Seeing ONLY topics you care about
+
+```javascript
+const ALLOWED_KEYWORDS = [
+    'javascript',
+    'react',
+    'web development',
+    'AI'
+];
+```
+
+**Features:**
+- Shows ONLY matching posts
+- Hides everything else
+- Green highlight on relevant content
+- Side panel tracking matches
+
+[📄 View Script](../scripts/whitelist-filter.js)
+
+---
+
+### 3. 🌟 Feed Cleaner
+**Best for:** Clean everything on your feed
+
+```javascript
+const style = document.createElement('style');
+    style.innerHTML = `
+        .feed-shared-update-v2 {
+            display: none !important;
+        }
+    `;
+    document.head.appendChild(style);
+```
+
+**Features:**
+- Displays a text "✅ Feed Cleaner Active"
+- Everything is hidden
+
+[📄 View Script](../scripts/feed-cleaner.js)
+
+---
+
+### 4. 🔥 Top Voted Filter (24hrs)
+**Best for:** Finding trending, high-quality posts on your topics
+
+```javascript
+const ALLOWED_KEYWORDS = ['AI', 'startups', 'tech'];
+
+ const ENGAGEMENT_CONFIG = {
+    minReactions: 50,
+    minComments: 5,
+    minEngagement: 100,
+    hoursLimit: 24
+};
+```
+
+**Features:**
+- Shows posts from past 24 hours only
+- Filters by engagement (reactions + comments)
+- Sorts by popularity
+- Rankings (#1, #2, #3...) in side panel
+- Engagement metrics displayed
+
+[📄 View Script](../scripts/top-voted-filter.js)
+
+---
+
+## ⚙️ Configuration Options
+
+### All Scripts Support:
+```javascript
+const CONFIG = {
+    caseSensitive: false,     // Match keywords regardless of case
+    showBlockedList: true,    // Display side panel
+    highlightBlocked: true    // Show borders vs hide completely
+};
+```
+
+### Top Voted Filter Additional Config:
+```javascript
+const ENGAGEMENT_CONFIG = {
+    minReactions: 50,         // Minimum likes/reactions
+    minComments: 5,           // Minimum comments
+    minEngagement: 100,       // Total engagement score
+    hoursLimit: 24            // Time window in hours
+};
+```
+
+## 🎯 Use Cases
+
+### For Developers
+```javascript
+['javascript', 'react', 'python', 'web3', 'open source', 'github', 'genAI']
+```
+
+### For Entrepreneurs  
+```javascript
+['startup', 'funding', 'venture capital', 'founder', 'SaaS', 'growth']
+```
+
+### For Designers
+```javascript
+['UI/UX', 'figma', 'design system', 'user research', 'prototyping']
+```
+
+### For Job Seekers
+```javascript
+['hiring', 'job opening', 'we are hiring', 'remote work', 'career']
+```
+
+### Avoiding Burnout
+```javascript
+// Blacklist
+['Genz', 'Do you know', 'happy', 'sleep is for the weak']
+```
+
+## 🔧 Troubleshooting
+
+**Script not working?**
+- Refresh LinkedIn after installing
+- Check Tampermonkey icon shows script is active
+- Open browser console (F12) to check for errors
+
+**Posts not being filtered?**
+- LinkedIn may have updated their HTML structure
+- Check console for "LinkedIn Feed Filter: Started" message
+- Try adjusting the CSS selectors in the script
+
+**Performance issues?**
+- Reduce the number of keywords
+- Increase the interval time (change `3000` to `5000` in setInterval)
+
+
+## ⚖️ License
+
+MIT License - feel free to modify and share!
+
+## 🙏 Acknowledgments
+
+- Built for the LinkedIn community
+- Inspired by the need for signal over noise
+- Powered by Tampermonkey
+
+## 📬 Contact
+
+Questions? Suggestions? Open an issue or reach out!
+
+---
+
+### 💡 Pro Tips
+
+1. **Start with Whitelist** - Easier to define what you want than what you don't
+2. **Use Multiple Scripts** - Run different filters on different LinkedIn tabs
+3. **Update Regularly** - Add new keywords as your interests evolve
+4. **Share Keywords** - Team members can sync relevant professional topics
+5. **Combine Filters** - Use blacklist + top voted for best results
+
+---
+
+
+**⭐ Star this repo if it saved you from "agree?" posts!**
+
+Made by Thiek with ❤️ for productive professionals
+
+[My Github Profile](https://github.com/ademi47) • [DM Me @ linkedin](https://www.linkedin.com/in/thiekshana/)
