@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function BlogFooter() {
   const currentYear = new Date().getFullYear();
   
@@ -10,10 +12,10 @@ export default function BlogFooter() {
             <div className="text-white/50">When tech falls, we rise.</div>
           </div>
           <nav className="flex gap-6">
-            <a href="/#about" className="hover:text-white">About</a>
-            <a href="/#products" className="hover:text-white">Products</a>
-            <a href="/#community" className="hover:text-white">Community</a>
-            <a href="/#" className="hover:text-white">Contact</a>
+            <Link href="/#about" className="hover:text-white">About</Link>
+            <Link href="/#products" className="hover:text-white">Products</Link>
+            <Link href="/#community" className="hover:text-white">Community</Link>
+            <Link href="/#" className="hover:text-white">Contact</Link>
           </nav>
         </div>
         <div className="mt-6 text-xs text-white/50">

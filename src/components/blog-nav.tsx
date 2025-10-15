@@ -15,18 +15,18 @@ export default function BlogNav() {
           <Link href="/blog" className="text-white font-semibold">Blog</Link>
         </nav>
         <div className="flex items-center gap-3">
-          <a 
+          <Link 
             href="/#join"
             className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-[#00F6FF]/10 text-[#00F6FF] ring-1 ring-[#00F6FF]/40 hover:bg-[#00F6FF]/20 transition"
           >
             Join the Hub
-          </a>
-          <a 
+          </Link>
+          <Link 
             href="/#products"
             className="inline-flex px-4 py-2 rounded-xl bg-[#FF6B00] hover:bg-orange-500 transition text-white"
           >
             Explore
-          </a>
+          </Link>
         </div>
       </div>
     </header>
