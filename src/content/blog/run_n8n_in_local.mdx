@@ -1,0 +1,126 @@
+---
+title: "How to Download & Run n8n on Your Local PC"
+date: "2025-10-03"
+description: "Step-by-step guide to install and run n8n workflow automation on your local machine. From Node.js installation to your first workflow in minutes."
+tags: ["n8n", "Node.js", "Automation", "Tutorial"]
+---
+
+# 🚀 How to Download & Run n8n on Your Local PC
+
+> Get n8n running locally in 3 simple steps. Start automating workflows on your machine today.
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node.js](https://img.shields.io/badge/Node.js-Required-green.svg)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
+
+## 🎯 Overview
+
+This guide walks you through installing and running n8n locally on your computer. n8n is a powerful workflow automation tool that you can run on your own machine for free.
+
+## 📥 Installation
+
+### Step 1️⃣: Install Node.js
+
+n8n runs on Node.js. Download the latest LTS version: 👉 [nodejs.org](https://nodejs.org)
+
+#### Installation by Operating System:
+
+**Windows:**
+- Run the `.msi` installer
+
+**macOS:**
+- Run the `.pkg` installer, OR
+- Use Homebrew: `brew install node`
+
+**Linux:**
+- Ubuntu/Debian: `apt install nodejs npm`
+- Fedora: `dnf install nodejs`
+
+#### Verify Installation
+
+After installation, confirm in terminal / PowerShell:
+
+```bash
+node -v
+npm -v
+```
+
+You should see version numbers displayed for both commands.
+
+---
+
+### Step 2️⃣: Install n8n via npm
+
+Open your terminal (PowerShell, cmd, or Bash) and run:
+
+```bash
+npm install n8n -g
+```
+
+This downloads and installs n8n globally so you can run it from anywhere.
+
+---
+
+### Step 3️⃣: Start n8n
+
+Now, just run:
+
+```bash
+n8n
+```
+
+✨ **This will start n8n on http://localhost:5678**
+
+### Getting Started
+
+1. Open the link in your browser: http://localhost:5678
+2. Sign up / create your local user
+3. Start building workflows!
+
+---
+
+## 🔧 Troubleshooting
+
+**Installation failed?**
+- Ensure Node.js is properly installed (`node -v` should work)
+- Try running terminal/PowerShell as administrator
+- Clear npm cache: `npm cache clean --force`
+
+**Port already in use?**
+- Another application might be using port 5678
+- Stop other n8n instances or change the port
+
+**Command not found?**
+- Make sure npm global bin directory is in your PATH
+- Restart your terminal after installation
+
+---
+
+## 💡 Next Steps
+
+Once n8n is running:
+- Explore the workflow templates
+- Connect your favorite apps and services
+- Build your first automation
+- Check out the n8n documentation for advanced features
+
+---
+
+## 📚 Additional Resources
+
+- [n8n Official Documentation](https://docs.n8n.io)
+- [n8n Community Forum](https://community.n8n.io)
+- [n8n Workflow Templates](https://n8n.io/workflows)
+- [n8n GitHub Repository](https://github.com/n8n-io/n8n)
+
+---
+
+## 📬 Contact
+
+Questions? Suggestions? Feel free to reach out!
+
+---
+
+**Made with ❤️ by Thiekshana**
+
+[My Github Profile](https://github.com/ademi47) • [DM Me @ LinkedIn](https://www.linkedin.com/in/thiekshana/)
