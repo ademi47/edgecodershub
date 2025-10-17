@@ -17,58 +17,63 @@ import {
 } from 'lucide-react';
 
 interface PersonalInfo {
-  fullName: string;
-  email: string;
-  phone: string;
-  location: string;
-  linkedin: string;
-  github: string;
-  portfolio: string;
+    fullName: string;
+    email: string;
+    phone: string;
+    location: string;
+    linkedin: string;
+    github: string;
+    portfolio: string;
 }
 
 interface Experience {
-  id: number;
-  company: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  current: boolean;
-  responsibilities: string[];
+    id: number;
+    company: string;
+    position: string;
+    startDate: string;
+    endDate: string;
+    current: boolean;
+    responsibilities: string[];
 }
 
 interface Education {
-  id: number;
-  institution: string;
-  degree: string;
-  field: string;
-  graduationYear: string;
-  gpa: string;
+    id: number;
+    institution: string;
+    degree: string;
+    field: string;
+    graduationYear: string;
+    gpa: string;
 }
 
 interface Skills {
-  technical: string[];
-  soft: string[];
+    technical: string[];
+    soft: string[];
 }
 
 interface ResumeData {
-  personal: PersonalInfo;
-  summary: string;
-  experience: Experience[];
-  education: Education[];
-  skills: Skills;
-  projects: any[];
-  references: any[];
+    personal: PersonalInfo;
+    summary: string;
+    experience: Experience[];
+    education: Education[];
+    skills: Skills;
+    projects: unknown[];
+    references: unknown[];
 }
 
 interface SavedResume {
-  id: number;
-  name: string;
-  data: ResumeData;
-  template: string;
-  lastModified: string;
-  createdAt: string;
+    id: number;
+    name: string;
+    data: ResumeData;
+    template: string;
+    lastModified: string;
+    createdAt: string;
 }
 
+interface Template {
+    primaryColor: string;
+    secondaryColor: string;
+    font: string;
+}
 
 
 export default function ResumeGeneratorPage() {
@@ -259,7 +264,7 @@ export default function ResumeGeneratorPage() {
         }));
     };
 
-    const updateExperience = (id: number, field: string, value: any) => {
+    const updateExperience = (id: number, field: string, value: string | boolean) => {
         setResumeData(prev => ({
             ...prev,
             experience: prev.experience.map(exp =>
@@ -267,7 +272,6 @@ export default function ResumeGeneratorPage() {
             )
         }));
     };
-
     const addResponsibility = (expId: number) => {
         setResumeData(prev => ({
             ...prev,
@@ -358,7 +362,7 @@ export default function ResumeGeneratorPage() {
             return;
         }
 
-        const resumeToSave = {
+        const resumeToSave: SavedResume = {
             id: Date.now(),
             name: name.trim(),
             data: resumeData,
@@ -368,9 +372,9 @@ export default function ResumeGeneratorPage() {
         };
 
         const existing = localStorage.getItem('savedResumes');
-        const resumes = existing ? JSON.parse(existing) : [];
+        const resumes: SavedResume[] = existing ? JSON.parse(existing) : [];
 
-        const existingIndex = resumes.findIndex((r: any) => r.name === name.trim());
+        const existingIndex = resumes.findIndex((r: SavedResume) => r.name === name.trim());
         if (existingIndex >= 0) {
             resumes[existingIndex] = { ...resumes[existingIndex], ...resumeToSave, createdAt: resumes[existingIndex].createdAt };
         } else {
@@ -383,140 +387,140 @@ export default function ResumeGeneratorPage() {
         setShowSaveModal(false);
         alert(`Resume "${name}" saved successfully!`);
     };
-
-    const loadResume = (resume: any) => {
+    const loadResume = (resume: SavedResume) => {
         setResumeData(resume.data);
-        setTemplate(resume.template);
+        setTemplate(resume.template as 'modern' | 'classic' | 'creative');
         setCurrentResumeName(resume.name);
         setShowLoadModal(false);
         alert(`Resume "${resume.name}" loaded successfully!`);
     };
 
-    const deleteResume = (id: number) => {
-        const resumes = savedResumes.filter((r: any) => r.id !== id);
-        localStorage.setItem('savedResumes', JSON.stringify(resumes));
-        setSavedResumes(resumes);
-    };
+
+   const deleteResume = (id: number) => {
+  const resumes = savedResumes.filter((r: SavedResume) => r.id !== id);
+  localStorage.setItem('savedResumes', JSON.stringify(resumes));
+  setSavedResumes(resumes);
+};
 
     // ==========================================
     // PART 4: AI ENHANCEMENT FUNCTIONS
     // ==========================================
 
- 
-   // ==========================================
-  // AI FUNCTIONS - NOW USING API ROUTE (NO CORS ISSUES!)
-  // ==========================================
 
-  const generateSummary = async () => {
-    if (!apiKey) {
-      setShowAPIKeyModal(true);
-      return;
-    }
+    // ==========================================
+    // AI FUNCTIONS - NOW USING API ROUTE (NO CORS ISSUES!)
+    // ==========================================
 
-    setIsEnhancing(true);
-    try {
-      const experienceSummary = resumeData.experience.map(exp => 
-        `${exp.position} at ${exp.company}`
-      ).join(', ');
-      
-      const skillsSummary = [...resumeData.skills.technical, ...resumeData.skills.soft].join(', ');
+    const generateSummary = async () => {
+  if (!apiKey) {
+    setShowAPIKeyModal(true);
+    return;
+  }
 
-      const prompt = experienceSummary || skillsSummary 
-        ? `Write a compelling professional summary (3-4 sentences) for a resume based on:
+  setIsEnhancing(true);
+  try {
+    const experienceSummary = resumeData.experience.map(exp => 
+      `${exp.position} at ${exp.company}`
+    ).join(', ');
+    
+    const skillsSummary = [...resumeData.skills.technical, ...resumeData.skills.soft].join(', ');
+
+    const prompt = experienceSummary || skillsSummary 
+      ? `Write a compelling professional summary (3-4 sentences) for a resume based on:
 
 Experience: ${experienceSummary || 'Entry level professional'}
 Skills: ${skillsSummary || 'Motivated learner'}
 
 Make it achievement-focused, professional, and impactful. Return only the summary.`
-        : `Write a compelling professional summary (3-4 sentences) for an entry-level professional resume. Make it achievement-focused, professional, and impactful. Return only the summary.`;
+      : `Write a compelling professional summary (3-4 sentences) for an entry-level professional resume. Make it achievement-focused, professional, and impactful. Return only the summary.`;
 
-      // Call our API route instead of Anthropic directly
-      const response = await fetch('/api/enhance', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          apiKey,
-          prompt,
-          maxTokens: 200
-        })
-      });
+    const response = await fetch('/api/enhance', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        apiKey,
+        prompt,
+        maxTokens: 200
+      })
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Failed to generate summary');
-      }
-
-      const data = await response.json();
-      const summary = data.content[0].text.trim();
-      setResumeData(prev => ({ ...prev, summary }));
-      alert('Summary generated successfully!');
-    } catch (error: any) {
-      console.error('Summary generation error:', error);
-      alert(`Failed to generate summary: ${error.message}`);
-    } finally {
-      setIsEnhancing(false);
-    }
-  };
-
-  const enhanceWithAI = async (expId: number, respIndex: number) => {
-    if (!apiKey) {
-      setShowAPIKeyModal(true);
-      return;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'Failed to generate summary');
     }
 
-    setIsEnhancing(true);
-    const experience = resumeData.experience.find(exp => exp.id === expId);
-    if (!experience) {
-      setIsEnhancing(false);
-      return;
-    }
-    
-    const responsibility = experience.responsibilities[respIndex];
+    const data = await response.json();
+    const summary = data.content[0].text.trim();
+    setResumeData(prev => ({ ...prev, summary }));
+    alert('Summary generated successfully!');
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('Summary generation error:', error);
+    alert(`Failed to generate summary: ${errorMessage}`);
+  } finally {
+    setIsEnhancing(false);
+  }
+};
 
-    if (!responsibility || responsibility.trim() === '') {
-      alert('Please enter some text before enhancing.');
-      setIsEnhancing(false);
-      return;
-    }
+const enhanceWithAI = async (expId: number, respIndex: number) => {
+  if (!apiKey) {
+    setShowAPIKeyModal(true);
+    return;
+  }
 
-    try {
-      const prompt = `Transform this job responsibility into a compelling achievement statement with metrics and impact. Keep it under 20 words, start with an action verb, and make it quantifiable:
+  setIsEnhancing(true);
+  const experience = resumeData.experience.find(exp => exp.id === expId);
+  if (!experience) {
+    setIsEnhancing(false);
+    return;
+  }
+  
+  const responsibility = experience.responsibilities[respIndex];
+
+  if (!responsibility || responsibility.trim() === '') {
+    alert('Please enter some text before enhancing.');
+    setIsEnhancing(false);
+    return;
+  }
+
+  try {
+    const prompt = `Transform this job responsibility into a compelling achievement statement with metrics and impact. Keep it under 20 words, start with an action verb, and make it quantifiable:
 
 "${responsibility}"
 
 Return only the enhanced statement, nothing else.`;
 
-      // Call our API route instead of Anthropic directly
-      const response = await fetch('/api/enhance', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          apiKey,
-          prompt,
-          maxTokens: 150
-        })
-      });
+    const response = await fetch('/api/enhance', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        apiKey,
+        prompt,
+        maxTokens: 150
+      })
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Failed to enhance text');
-      }
-
-      const data = await response.json();
-      const enhanced = data.content[0].text.trim();
-      updateResponsibility(expId, respIndex, enhanced);
-      alert('Text enhanced successfully!');
-    } catch (error: any) {
-      console.error('Enhancement error:', error);
-      alert(`Failed to enhance: ${error.message}`);
-    } finally {
-      setIsEnhancing(false);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'Failed to enhance text');
     }
-  };
+
+    const data = await response.json();
+    const enhanced = data.content[0].text.trim();
+    updateResponsibility(expId, respIndex, enhanced);
+    alert('Text enhanced successfully!');
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('Enhancement error:', error);
+    alert(`Failed to enhance: ${errorMessage}`);
+  } finally {
+    setIsEnhancing(false);
+  }
+};
 
     // ==========================================
     // PART 5: IMPORT/EXPORT FUNCTIONS
@@ -534,24 +538,27 @@ Return only the enhanced statement, nothing else.`;
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
     };
+const importJSON = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
 
-    const importJSON = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                const imported = JSON.parse(e.target?.result as string);
-                setResumeData(imported);
-                alert('Resume data imported successfully!');
-            } catch (error) {
-                alert('Error importing JSON file. Please make sure it\'s a valid resume JSON file.');
-                console.error('Import error:', error);
-            }
-        };
-        reader.readAsText(file);
-    };
+  const reader = new FileReader();
+  reader.onload = (e: ProgressEvent<FileReader>) => {
+    try {
+      const result = e.target?.result;
+      if (typeof result === 'string') {
+        const imported: ResumeData = JSON.parse(result);
+        setResumeData(imported);
+        alert('Resume data imported successfully!');
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert('Error importing JSON file. Please make sure it\'s a valid resume JSON file.');
+      console.error('Import error:', errorMessage);
+    }
+  };
+  reader.readAsText(file);
+};
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4">
@@ -908,8 +915,8 @@ Return only the enhanced statement, nothing else.`;
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
                                     className={`px-4 py-2 rounded-lg flex items-center gap-2 whitespace-nowrap transition-colors ${activeTab === tab.id
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                                         }`}
                                 >
                                     <tab.icon className="w-4 h-4" />
