@@ -1,0 +1,786 @@
+---
+title: "Gmail Auto-Reply Bot with Python"
+date: "2025-10-22"
+description: "Never miss an email again. Build an intelligent auto-reply system that monitors your Gmail inbox and sends smart, context-aware responses automatically."
+tags: ["Python", "Gmail", "Automation", "Email", "IMAP"]
+---
+
+# 🤖 Gmail Auto-Reply Bot with Python
+
+> Your inbox works while you sleep. Intelligent email responses powered by keyword detection and Python automation.
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.7+-green.svg)
+![Gmail](https://img.shields.io/badge/Gmail-API-red.svg)
+
+## 🎯 Overview
+
+Tired of manually responding to repetitive emails? This Python-based auto-reply system monitors your Gmail inbox 24/7 and sends intelligent, context-aware responses based on email content. Perfect for handling support requests, meeting inquiries, and common questions while you focus on what matters.
+
+## ✨ Features
+
+### 🎨 Smart Response System
+- **Keyword Detection** - Automatically categorizes emails by content
+- **Context-Aware Replies** - Sends appropriate responses based on email type
+- **6 Built-in Templates** - Meeting requests, support, pricing, urgent matters, billing, and job applications
+- **Customizable Rules** - Add your own keywords and response templates
+
+### 🔄 Automation & Safety
+- **Real-time Monitoring** - Checks inbox every 60 seconds (configurable)
+- **Duplicate Prevention** - Never sends the same reply twice
+- **Self-Reply Protection** - Won't respond to your own emails
+- **Auto-Mark Read** - Keeps your inbox organized
+- **Date Filtering** - Only processes emails from today onwards (customizable)
+
+### ⚙️ Technical Features
+- IMAP/SMTP integration with Gmail
+- App password authentication (secure)
+- Thread-safe reply handling
+- JSON-based rule configuration
+- Comprehensive error handling
+
+## 📥 Installation
+
+### Prerequisites
+- Python 3.7 or higher
+- Gmail account with IMAP enabled
+- Gmail App Password (not your regular password)
+
+### Quick Setup
+
+**1. Clone or Download**
+```bash
+# Download the files:
+- email_auto_reply.py
+- reply_rules.json
+- QUICKSTART.md
+```
+
+**2. Install Dependencies**
+```bash
+pip install imaplib-utf7
+```
+
+That's it! No external packages needed - uses Python standard library.
+
+---
+
+## 🚀 Quick Start (5 Minutes)
+
+### Step 1: Get Gmail App Password
+
+1. Go to https://myaccount.google.com/apppasswords
+2. Sign in to your Google Account
+3. Create a new App Password:
+   - Select **"Mail"** as the app
+   - Select your device
+   - Click **"Generate"**
+4. Copy the 16-character password
+
+**Example:** `abcd efgh ijkl mnop`
+
+---
+
+### Step 2: Configure Your Credentials
+
+Open `email_auto_reply.py` and update these lines:
+
+```python
+# Find these lines at the bottom of the file:
+EMAIL = "your.email@gmail.com"  # ← Change this
+APP_PASSWORD = "your-app-password"  # ← Paste your app password
+```
+
+**Replace with your actual credentials:**
+
+```python
+EMAIL = "john.doe@gmail.com"
+APP_PASSWORD = "abcd efgh ijkl mnop"
+```
+
+---
+
+### Step 3: Run the Bot
+
+```bash
+python3 email_auto_reply.py
+```
+
+**You should see:**
+```
+Email Auto-Reply System Started
+Monitoring: john.doe@gmail.com
+Check interval: 60 seconds
+Press Ctrl+C to stop
+
+[2025-10-22 10:30:00] Checking for new emails...
+No unread emails found from 22-Oct-2025 onwards
+Waiting 60 seconds until next check...
+```
+
+---
+
+### Step 4: Test It!
+
+**Send a test email to yourself:**
+1. From another email account, send an email to your Gmail
+2. Include keywords like **"urgent"** or **"meeting"** in the subject or body
+3. Wait up to 60 seconds
+4. Check if you received an auto-reply!
+
+---
+
+## 📋 Default Auto-Reply Rules
+
+The system recognizes these keywords and sends appropriate responses:
+
+### 1. 📅 **Meeting/Scheduling**
+**Keywords:** meeting, schedule, appointment, calendar
+
+**Reply:**
+```
+Hello,
+
+Thank you for your email regarding scheduling. I've received your 
+message and will review my calendar to find a suitable time.
+
+I'll get back to you within 24 hours with my availability.
+
+Best regards
+```
+
+---
+
+### 2. 🚨 **Urgent Matters**
+**Keywords:** urgent, asap, emergency, immediate
+
+**Reply:**
+```
+Hello,
+
+I've received your urgent message and it has been flagged for 
+priority attention.
+
+I will respond as soon as possible.
+
+Best regards
+```
+
+---
+
+### 3. 💰 **Pricing Inquiries**
+**Keywords:** quote, pricing, price, cost, estimate
+
+**Reply:**
+```
+Hello,
+
+Thank you for your inquiry about pricing. I've received your 
+request for a quote.
+
+I will prepare the information and send you a detailed response 
+within 2 business days.
+
+Best regards
+```
+
+---
+
+### 4. 🛠️ **Support Requests**
+**Keywords:** support, help, issue, problem, bug
+
+**Reply:**
+```
+Hello,
+
+Thank you for contacting support. Your message has been received 
+and logged.
+
+Our support team will review your issue and respond within 24-48 hours.
+
+Best regards
+```
+
+---
+
+### 5. 💳 **Billing/Invoice**
+**Keywords:** invoice, payment, bill, receipt
+
+**Reply:**
+```
+Hello,
+
+Thank you for your message regarding billing. I've received your inquiry.
+
+Our accounting team will review this and respond within 2 business days.
+
+Best regards
+```
+
+---
+
+### 6. 👔 **Job Applications**
+**Keywords:** application, job, position, resume, cv
+
+**Reply:**
+```
+Hello,
+
+Thank you for your interest and for submitting your application. 
+We have received your materials.
+
+Our team will review your application and contact you if your 
+qualifications match our current needs.
+
+Best regards
+```
+
+---
+
+## 🎨 Customization
+
+### Method 1: Edit the Python File
+
+Add custom rules directly in `email_auto_reply.py`:
+
+```python
+# Find the load_default_rules() function and add:
+{
+    "keywords": ["refund", "return"],
+    "reply_template": """Hello,
+
+Thank you for your refund request. Our team will process this 
+within 5 business days.
+
+Best regards"""
+}
+```
+
+---
+
+### Method 2: Use JSON Configuration
+
+Edit `reply_rules.json`:
+
+```json
+[
+  {
+    "keywords": ["demo", "trial", "free trial"],
+    "reply_template": "Hello,\n\nThank you for your interest in our demo!\n\nI'll send you access details within 24 hours.\n\nBest regards"
+  }
+]
+```
+
+**Load custom rules:**
+```python
+auto_reply = EmailAutoReply(EMAIL, APP_PASSWORD)
+auto_reply.load_rules("reply_rules.json")
+```
+
+---
+
+### Method 3: Add Rules Programmatically
+
+```python
+auto_reply = EmailAutoReply(EMAIL, APP_PASSWORD)
+
+auto_reply.add_custom_rule(
+    keywords=["partnership", "collaboration", "sponsor"],
+    reply_template="Thank you for reaching out about partnership opportunities..."
+)
+
+# Save rules for next time
+auto_reply.save_rules("my_custom_rules.json")
+```
+
+---
+
+## ⚙️ Advanced Configuration
+
+### Custom Date Range
+
+Process emails from a specific date:
+
+```python
+from datetime import date
+
+# Start from October 15, 2025
+custom_date = date(2025, 10, 15)
+auto_reply = EmailAutoReply(EMAIL, APP_PASSWORD, start_date=custom_date)
+```
+
+---
+
+### Change Check Interval
+
+```python
+# Check every 30 seconds (instead of 60)
+auto_reply.run_continuous(check_interval=30)
+
+# Check every 5 minutes
+auto_reply.run_continuous(check_interval=300)
+```
+
+---
+
+### Process Once (No Continuous Loop)
+
+```python
+auto_reply = EmailAutoReply(EMAIL, APP_PASSWORD)
+auto_reply.process_unread_emails()  # Process once and exit
+```
+
+---
+
+## 🎯 Use Cases
+
+### For Freelancers
+- Auto-respond to client inquiries
+- Handle meeting requests automatically
+- Send instant pricing confirmations
+- Manage support tickets
+
+### For Small Businesses
+- 24/7 customer support acknowledgment
+- Handle job applications
+- Manage billing inquiries
+- Schedule meetings efficiently
+
+### For Developers
+- GitHub issue notifications
+- Support ticket automation
+- Bug report acknowledgments
+- API inquiry handling
+
+### For Job Seekers
+- Auto-respond to recruiter emails
+- Acknowledge interview invitations
+- Handle follow-up inquiries
+- Manage application confirmations
+
+---
+
+## 🔒 Security & Privacy
+
+### ✅ Best Practices
+
+**1. Use App Passwords (Never Regular Password)**
+```python
+# ✅ CORRECT
+APP_PASSWORD = "abcd efgh ijkl mnop"  # App password
+
+# ❌ WRONG - Never use your regular password!
+APP_PASSWORD = "myGmailPassword123"
+```
+
+**2. Keep Credentials Secret**
+```python
+# Store in environment variables (production)
+import os
+EMAIL = os.getenv('GMAIL_ADDRESS')
+APP_PASSWORD = os.getenv('GMAIL_APP_PASSWORD')
+```
+
+**3. Never Commit Credentials to Git**
+```bash
+# Add to .gitignore
+echo "config.py" >> .gitignore
+echo "*.env" >> .gitignore
+```
+
+**4. Test Before Production**
+- Test with a secondary Gmail account first
+- Review all auto-replies before enabling 24/7
+- Monitor the first few hours closely
+
+---
+
+## 🔧 Troubleshooting
+
+### **Problem: "Authentication failed"**
+```
+❌ Failed to connect to IMAP: [AUTHENTICATIONFAILED]
+```
+
+**Solutions:**
+- Double-check your email and app password
+- Make sure you're using an **App Password**, not your regular password
+- Verify IMAP is enabled in Gmail settings
+
+---
+
+### **Problem: "No unread emails found"**
+```
+No unread emails found from 22-Oct-2025 onwards
+```
+
+**Solutions:**
+- The system only processes **unread** emails
+- Try sending a new test email
+- Or mark an existing email as unread
+- Check if your start date is correct
+
+---
+
+### **Problem: Not receiving replies**
+
+**Solutions:**
+- Check your **spam folder**
+- Wait for the full check interval (60 seconds)
+- Look for error messages in the terminal
+- Verify the keyword matching is working
+
+---
+
+### **Problem: "Connection timeout"**
+
+**Solutions:**
+- Check your internet connection
+- Verify Gmail servers are accessible
+- Try increasing timeout in the code
+- Check firewall settings
+
+---
+
+## 💡 Pro Tips
+
+### 1. **Start with Whitelist Mode**
+Only respond to specific senders:
+
+```python
+def process_unread_emails(self):
+    # Add this check after getting sender_email
+    allowed_senders = ["client@example.com", "boss@company.com"]
+    if sender_email not in allowed_senders:
+        continue
+```
+
+### 2. **Add Time Delays**
+Avoid looking too robotic:
+
+```python
+import random
+time.sleep(random.randint(30, 120))  # Wait 30-120 seconds before replying
+```
+
+### 3. **Log Everything**
+Track all auto-replies:
+
+```python
+import logging
+logging.basicConfig(filename='auto_replies.log', level=logging.INFO)
+logging.info(f"Replied to {sender_email} at {timestamp}")
+```
+
+### 4. **Set Business Hours**
+Only send replies during work hours:
+
+```python
+from datetime import datetime
+
+current_hour = datetime.now().hour
+if 9 <= current_hour <= 17:  # 9 AM to 5 PM
+    self.send_reply(...)
+```
+
+### 5. **Add Rate Limiting**
+Prevent spam:
+
+```python
+self.reply_count = {}
+
+def send_reply(self, to_address, ...):
+    # Max 3 replies per sender per day
+    if self.reply_count.get(to_address, 0) >= 3:
+        return False
+    
+    # Send reply...
+    self.reply_count[to_address] = self.reply_count.get(to_address, 0) + 1
+```
+
+---
+
+## 📊 How It Works
+
+### System Architecture
+
+```
+┌─────────────┐
+│   Gmail     │
+│   Inbox     │
+└──────┬──────┘
+       │
+       │ IMAP Connection
+       │
+┌──────▼──────────────────────┐
+│  Python Auto-Reply Bot      │
+│                             │
+│  1. Connect to IMAP         │
+│  2. Fetch unread emails     │
+│  3. Analyze content         │
+│  4. Match keywords          │
+│  5. Generate reply          │
+│  6. Send via SMTP           │
+│  7. Mark as read            │
+└──────┬──────────────────────┘
+       │
+       │ SMTP Send
+       │
+┌──────▼──────┐
+│  Recipient  │
+│  Inbox      │
+└─────────────┘
+```
+
+---
+
+### Code Flow
+
+```python
+while True:
+    # 1. Connect to Gmail
+    mail = imaplib.IMAP4_SSL("imap.gmail.com")
+    mail.login(email, password)
+    
+    # 2. Get unread emails
+    mail.select('INBOX')
+    status, messages = mail.search(None, 'UNSEEN')
+    
+    # 3. Process each email
+    for email_id in messages:
+        msg = fetch_email(email_id)
+        
+        # 4. Analyze content
+        subject = msg['Subject']
+        body = get_body(msg)
+        
+        # 5. Find matching rule
+        reply = analyze_message(subject, body)
+        
+        # 6. Send reply
+        send_reply(sender, subject, reply)
+        
+        # 7. Mark as read
+        mark_read(email_id)
+    
+    # 8. Wait and repeat
+    time.sleep(60)
+```
+
+---
+
+## 🚨 Important Notes
+
+### What This Bot Does:
+- ✅ Monitors Gmail inbox continuously
+- ✅ Sends automatic replies to unread emails
+- ✅ Categorizes emails by keywords
+- ✅ Marks emails as read after replying
+- ✅ Prevents duplicate replies
+
+### What This Bot Doesn't Do:
+- ❌ Won't reply to emails from yourself
+- ❌ Won't reply to already-read emails
+- ❌ Won't reply twice to the same email
+- ❌ Won't process emails older than start date
+- ❌ Won't send replies if sending fails
+
+### Safety Checks:
+```python
+# Self-reply protection
+if sender_email == self.email_address:
+    continue
+
+# Duplicate prevention
+if email_id in self.processed_emails:
+    continue
+
+# Error handling
+try:
+    send_reply(...)
+except Exception as e:
+    log_error(e)
+```
+
+---
+
+## 🔄 Deployment Options
+
+### Option 1: Run Locally (Development)
+```bash
+python3 email_auto_reply.py
+```
+**Pros:** Easy, immediate testing
+**Cons:** Stops when computer sleeps
+
+---
+
+### Option 2: Background Process (Linux/Mac)
+```bash
+nohup python3 email_auto_reply.py > output.log 2>&1 &
+```
+**Pros:** Runs in background
+**Cons:** Still requires local machine
+
+---
+
+### Option 3: Cloud Server (24/7)
+
+**On AWS EC2, DigitalOcean, or similar:**
+```bash
+# 1. Upload script to server
+scp email_auto_reply.py user@server:/home/user/
+
+# 2. SSH into server
+ssh user@server
+
+# 3. Run with screen/tmux
+screen -S email-bot
+python3 email_auto_reply.py
+
+# 4. Detach with Ctrl+A then D
+```
+
+---
+
+### Option 4: Systemd Service (Linux)
+
+Create `/etc/systemd/system/email-autoreply.service`:
+
+```ini
+[Unit]
+Description=Gmail Auto-Reply Bot
+After=network.target
+
+[Service]
+Type=simple
+User=youruser
+WorkingDirectory=/home/youruser/email-bot
+ExecStart=/usr/bin/python3 email_auto_reply.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Enable and start:**
+```bash
+sudo systemctl enable email-autoreply
+sudo systemctl start email-autoreply
+sudo systemctl status email-autoreply
+```
+
+---
+
+## 📚 Code Structure
+
+```
+email-auto-reply/
+├── email_auto_reply.py      # Main bot script
+├── reply_rules.json          # Custom reply rules
+├── QUICKSTART.md             # Quick setup guide
+├── README.md                 # Full documentation
+└── .gitignore               # Exclude credentials
+```
+
+**Key Classes & Functions:**
+
+```python
+class EmailAutoReply:
+    def __init__()              # Initialize with credentials
+    def connect_imap()          # Connect to Gmail
+    def process_unread_emails() # Process inbox
+    def analyze_message()       # Find matching rule
+    def send_reply()            # Send auto-reply
+    def run_continuous()        # Run 24/7
+```
+
+---
+
+## 🎓 Learning Resources
+
+### Understanding IMAP
+- [RFC 3501 - IMAP4 Protocol](https://tools.ietf.org/html/rfc3501)
+- [Gmail IMAP Documentation](https://support.google.com/mail/answer/7126229)
+
+### Python Email Libraries
+- [imaplib - IMAP4 protocol client](https://docs.python.org/3/library/imaplib.html)
+- [smtplib - SMTP protocol client](https://docs.python.org/3/library/smtplib.html)
+- [email - Email handling](https://docs.python.org/3/library/email.html)
+
+### Security
+- [Google App Passwords](https://support.google.com/accounts/answer/185833)
+- [OAuth 2.0 for Gmail](https://developers.google.com/gmail/api/auth/about-auth)
+
+---
+
+## 🚀 Next Steps & Enhancements
+
+### Easy Additions:
+- [ ] Add HTML email templates
+- [ ] Include attachments in replies
+- [ ] Support multiple Gmail accounts
+- [ ] Add email signature with logo
+
+### Advanced Features:
+- [ ] Natural Language Processing (NLP) for better categorization
+- [ ] Machine learning to improve responses over time
+- [ ] Integration with CRM systems
+- [ ] Webhook notifications to Slack/Discord
+- [ ] Analytics dashboard (emails processed, response times)
+
+### Enterprise Features:
+- [ ] Multi-user support
+- [ ] Role-based reply rules
+- [ ] API endpoint for external triggers
+- [ ] Database integration for logging
+- [ ] Admin dashboard
+
+---
+
+## ⚖️ License
+
+MIT License - feel free to use, modify, and distribute!
+
+---
+
+## 🙏 Acknowledgments
+
+- Built with Python standard library
+- Powered by Gmail IMAP/SMTP
+- Inspired by the need for efficient email management
+- Community-driven feature requests
+
+---
+
+## 📬 Support & Feedback
+
+**Found a bug?** Open an issue
+**Want a feature?** Submit a pull request
+**Need help?** Check the troubleshooting guide
+
+---
+
+## 🎯 Quick Recap
+
+**Setup Time:** 5 minutes
+**Difficulty:** Beginner-friendly
+**Dependencies:** Python standard library
+**Cost:** Free (just need Gmail)
+**Maintenance:** Set it and forget it
+
+**Ready to automate your inbox?**
+
+```bash
+python3 email_auto_reply.py
+```
+
+**No sign-up. No credit card. Just results.** 📧
+
+---
+
+**⭐ Star this project if it helped you save time!**
+
+Made with ❤️ by Thiekshana for busy professionals worldwide
+
+[My Github Profile](https://github.com/ademi47) • [DM Me @ LinkedIn](https://www.linkedin.com/in/thiekshana/)

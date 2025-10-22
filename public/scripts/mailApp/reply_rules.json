@@ -1,0 +1,26 @@
+[
+  {
+    "keywords": ["meeting", "schedule", "appointment", "calendar"],
+    "reply_template": "Hello,\n\nThank you for your email regarding scheduling. I've received your message and will review my calendar to find a suitable time.\n\nI'll get back to you within 24 hours with my availability.\n\nBest regards"
+  },
+  {
+    "keywords": ["urgent", "asap", "emergency", "immediate"],
+    "reply_template": "Hello,\n\nI've received your urgent message and it has been flagged for priority attention.\n\nI will respond as soon as possible.\n\nBest regards"
+  },
+  {
+    "keywords": ["quote", "pricing", "price", "cost", "estimate"],
+    "reply_template": "Hello,\n\nThank you for your inquiry about pricing. I've received your request for a quote.\n\nI will prepare the information and send you a detailed response within 2 business days.\n\nBest regards"
+  },
+  {
+    "keywords": ["support", "help", "issue", "problem", "bug"],
+    "reply_template": "Hello,\n\nThank you for contacting support. Your message has been received and logged.\n\nOur support team will review your issue and respond within 24-48 hours.\n\nBest regards"
+  },
+  {
+    "keywords": ["refund", "return", "exchange"],
+    "reply_template": "Hello,\n\nThank you for contacting us about your return/refund request.\n\nOur customer service team will process your request within 3-5 business days.\n\nBest regards"
+  },
+  {
+    "keywords": ["collaboration", "partnership", "collaborate"],
+    "reply_template": "Hello,\n\nThank you for your interest in collaborating with us. I'm excited to learn more about your proposal.\n\nI'll review your message and get back to you within 48 hours to discuss further.\n\nBest regards"
+  }
+]
