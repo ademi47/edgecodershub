@@ -67,7 +67,7 @@ export default function BlogFooter() {
       {/* Copyright & Credits */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
         <div className="text-center sm:text-left">
-          <div>© {currentYear} EdgeCodersHub (UEN: T251393304).</div>
+          <div>© {currentYear} EdgeCodersHub</div>
           <div>All rights reserved. Registered in Singapore.</div>
         </div>
         <div className="text-center sm:text-right">
