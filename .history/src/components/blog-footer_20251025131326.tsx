@@ -16,8 +16,8 @@ export default function BlogFooter() {
         <div className="text-white/50 mb-3">When tech falls, we rise.</div>
         <div className="text-xs text-white/60 space-y-1">
           <div><strong>UEN:</strong> T251393304</div>
-          <div>Enterprise Software Solutions, IT Consulting</div>
-          <div>& Digital Innovation</div>
+          <div>Custom Software Development</div>
+          <div>& IT Consulting</div>
         </div>
       </div>
       

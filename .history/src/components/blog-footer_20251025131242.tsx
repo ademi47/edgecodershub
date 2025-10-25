@@ -16,8 +16,8 @@ export default function BlogFooter() {
         <div className="text-white/50 mb-3">When tech falls, we rise.</div>
         <div className="text-xs text-white/60 space-y-1">
           <div><strong>UEN:</strong> T251393304</div>
-          <div>Enterprise Software Solutions, IT Consulting</div>
-          <div>& Digital Innovation</div>
+          <div>Custom Software Development</div>
+          <div>& IT Consulting</div>
         </div>
       </div>
       
@@ -85,7 +85,7 @@ export default function BlogFooter() {
         <div className="text-center sm:text-right">
           Designed by{' '}
           <a 
-            href="https://thiek.me"
+            href="https://www.linkedin.com/in/thiekshana"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#00F6FF] hover:underline transition-colors"
