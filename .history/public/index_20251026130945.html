@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EdgeCodersHub — We build the future</title>
+    <meta name="description"
+        content="EdgeCodersHub is a developer-first platform to share knowledge, showcase SaaS & AI products, and empower entrepreneurs to stop waiting and start building." />
+
+    <!-- TailwindCSS CDN for quick import in VS Code (no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ecBlue: '#00F6FF',
+                        ecDark: '#0D1B2A',
+                        ecChar: '#1C1C1C',
+                        ecOrange: '#FF6B00'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Soft grid background */
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-position: center center;
+        }
+
+        /* Glass card */
+        .glass {
+            backdrop-filter: blur(6px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+    </style>
+</head>
+
+<body class="text-white bg-ecDark">
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-ecDark/80 backdrop-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="#top" class="font-bold tracking-tight text-lg sm:text-xl flex items-center gap-2">
+                <img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" />
+                EdgeCodersHub
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+                <a href="#about" class="hover:text-white">About</a>
+                <a href="#mission" class="hover:text-white">Mission</a>
+                <a href="#products" class="hover:text-white">Products</a>
+                <a href="#community" class="hover:text-white">Community</a>
+                <a href="/blog" class="text-white">Blog</a>
+                <a href="/resume-generator" class="text-ecBlue font-semibold hover:text-white">Resume Tool</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="#join"
+                    class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-ecBlue/10 text-ecBlue ring-1 ring-ecBlue/40 hover:bg-ecBlue/20 transition">Join
+                    the Hub</a>
+                <a href="#products"
+                    class="inline-flex px-4 py-2 rounded-xl bg-ecOrange hover:bg-orange-500 transition">Explore</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="top" class="relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg"></div>
+        <div class="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-ecBlue/10 blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-ecOrange/10 blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+                        We don’t wait for the future.<br class="hidden sm:block" />
+                        <span class="text-ecBlue">We build it.</span>
+                    </h1>
+                    <p class="mt-5 text-lg text-white/80 max-w-xl">
+                        A hub for developers, entrepreneurs, and creators to learn, share, and build AI‑driven products
+                        — without waiting for gatekeepers.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#join"
+                            class="px-5 py-3 rounded-xl bg-ecBlue/10 text-ecBlue ring-1 ring-ecBlue/40 hover:bg-ecBlue/20 transition">Join
+                            the Hub</a>
+                        <a href="#products"
+                            class="px-5 py-3 rounded-xl bg-ecOrange hover:bg-orange-500 transition">Explore Products</a>
+                    </div>
+                    <div class="mt-6 text-sm text-white/60">
+                        👉 <span class="italic">“Stop waiting. Start building.”</span> 👈
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-[4/3] rounded-3xl glass ring-1 ring-white/10 p-6">
+                        <div class="grid grid-cols-2 gap-4 h-full">
+                            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 flex flex-col">
+                                <div class="text-sm text-white/70">Knowledge</div>
+                                <div class="mt-2 text-xl font-semibold">Guides & Playbooks</div>
+                                <div class="mt-auto text-xs text-white/60">AI, SaaS, DevOps</div>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 flex flex-col">
+                                <div class="text-sm text-white/70">Products</div>
+                                <div class="mt-2 text-xl font-semibold">SaaS & AI Tools</div>
+                                <div class="mt-auto text-xs text-white/60">MemeCrawler, EdusoraStudy</div>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 flex flex-col">
+                                <div class="text-sm text-white/70">Community</div>
+                                <div class="mt-2 text-xl font-semibold">Builders’ Hub thru Patreon</div>
+                                <div class="mt-auto text-xs text-white/60">Mentor • Collaborate</div>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 flex flex-col">
+                                <div class="text-sm text-white/70">Mindset</div>
+                                <div class="mt-2 text-xl font-semibold">Rise Beyond</div>
+                                <div class="mt-auto text-xs text-white/60">No waiting. Build.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 sm:py-24 border-t border-white/10 bg-gradient-to-b from-ecDark to-[#0b1723]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-bold">Why EdgeCodersHub?</h2>
+                <p class="mt-4 text-white/80">
+                    EdgeCodersHub is built for people who won’t wait for permission to innovate. We share real‑world
+                    knowledge, showcase SaaS and AI products, and guide juniors, seniors, and founders from <span
+                        class="font-semibold">code to company</span>.
+                </p>
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+                        <div class="text-2xl">🚀</div>
+                        <div class="mt-2 font-semibold">Learn Fast</div>
+                        <div class="text-sm text-white/70">Battle‑tested insights.</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+                        <div class="text-2xl">🤝</div>
+                        <div class="mt-2 font-semibold">Build Together</div>
+                        <div class="text-sm text-white/70">Mentor & collaborate.</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5">
+                        <div class="text-2xl">🔮</div>
+                        <div class="mt-2 font-semibold">Think Beyond</div>
+                        <div class="text-sm text-white/70">AI‑driven edge.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-3xl ring-1 ring-white/10 p-6 glass">
+                <h3 class="text-xl font-semibold">What you’ll find inside</h3>
+                <ul class="mt-4 space-y-3 text-white/80 list-disc pl-5">
+                    <li>Implementation guides for .NET, Next.js, n8n, AWS</li>
+                    <li>Playbooks for launching & scaling SaaS</li>
+                    <li>AI workflows: OCR, LLM ops, analytics</li>
+                    <li>Real product roadmaps & postmortems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission" class="py-16 sm:py-24 border-t border-white/10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold">Mission & Vision</h2>
+            <p class="mt-5 text-white/80 max-w-3xl mx-auto">Our mission is simple: empower developers and entrepreneurs
+                to stop waiting and start building the future.</p>
+            <div class="mt-10 grid sm:grid-cols-2 gap-6">
+                <div class="rounded-3xl glass ring-1 ring-white/10 p-6">
+                    <div class="text-ecBlue font-semibold">Mission</div>
+                    <p class="mt-2 text-white/80">Share knowledge, ship products, uplift builders.</p>
+                </div>
+                <div class="rounded-3xl glass ring-1 ring-white/10 p-6">
+                    <div class="text-ecOrange font-semibold">Vision</div>
+                    <p class="mt-2 text-white/80">A world where ideas scale faster and opportunity is created — not
+                        awaited.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="py-16 sm:py-24 border-t border-white/10 bg-[#0b1723]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-end justify-between gap-4 flex-wrap">
+                <h2 class="text-3xl sm:text-4xl font-bold">Product Showcase</h2>
+                <a href="#join"
+                    class="text-sm px-4 py-2 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition">Get
+                    early access</a>
+            </div>
+
+            <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product Card Template -->
+                             <!-- ✨ NEW: AI Resume Generator Card -->
+            <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 flex flex-col hover:bg-white/10 transition-all group">
+                <div class="text-sm text-ecBlue">🤖 AI • Career Tools</div>
+                <h3 class="mt-2 text-xl font-semibold group-hover:text-ecBlue transition-colors">ECH Resume Generator</h3>
+                <p class="mt-2 text-white/80">Create professional, ATS-friendly resumes with AI-powered content enhancement in minutes.</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="text-xs px-2 py-1 bg-ecBlue/10 text-ecBlue rounded-full">Free</span>
+                    <span class="text-xs px-2 py-1 bg-ecBlue/10 text-ecBlue rounded-full">AI-Powered</span>
+                    <span class="text-xs px-2 py-1 bg-ecBlue/10 text-ecBlue rounded-full">No Sign-up</span>
+                </div>
+                <div class="mt-auto pt-4">
+                    <a href="/resume-generator" 
+                       class="inline-flex items-center text-sm text-ecBlue hover:underline">
+                        Try it now →
+                    </a>
+                </div>
+                <div class="mt-2 text-xs text-white/60">Status: ✅ Live</div>
+            </article>
+                <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 flex flex-col">
+                    <div class="text-sm text-ecBlue">AI • Analytics</div>
+                    <h3 class="mt-2 text-xl font-semibold">MemeCrawler</h3>
+                    <p class="mt-2 text-white/80">AI‑powered meme & trend analytics for creators and brands.</p>
+                    <div class="mt-auto pt-4 text-xs text-white/60">Status: In Beta</div>
+                </article>
+                <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 flex flex-col">
+                    <div class="text-sm text-ecBlue">SaaS • PropTech</div>
+                    <h3 class="mt-2 text-xl font-semibold">EduSoraStudy</h3>
+                    <p class="mt-2 text-white/80">One‑click student applications with document OCR.</p>
+                    <div class="mt-auto pt-4 text-xs text-white/60">Status: Building</div>
+                </article>
+                <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 flex flex-col">
+                    <div class="text-sm text-ecBlue">Gaming • AI</div>
+                    <h3 class="mt-2 text-xl font-semibold">LFGZero</h3>
+                    <p class="mt-2 text-white/80">AI‑driven matchmaking & performance insights for gamers.</p>
+                    <div class="mt-auto pt-4 text-xs text-white/60">Status: Coming Soon</div>
+                </article>
+                <article class="rounded-3xl bg-white/5 ring-1 ring-white/10 p-6 flex flex-col">
+                    <div class="text-sm text-ecBlue">Data • Integrations</div>
+                    <h3 class="mt-2 text-xl font-semibold">n8n Packs</h3>
+                    <p class="mt-2 text-white/80">Prebuilt flows: OCR → DB, S3 signed links, Textract, Mistral OCR.</p>
+                    <div class="mt-auto pt-4 text-xs text-white/60">Status: WIP</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section id="community" class="py-16 sm:py-24 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1">
+                <h2 class="text-3xl sm:text-4xl font-bold">Not just a platform — a movement.</h2>
+                <p class="mt-4 text-white/80">Juniors get guidance. Seniors share mastery. Entrepreneurs find allies. We
+                    rise together.</p>
+                <ul class="mt-6 space-y-3 text-white/80 list-disc pl-5">
+                    <li>Private Discord for deep‑dive builds, code reviews, AMAs</li>
+                    <li>Weekly “Ship Room” live sessions (build in public)</li>
+                    <li>Founder circle: from idea → MVP → paying users</li>
+                </ul>
+                <a id="join" href="https://www.patreon.com/c/Thiekshana" target="_blank"
+                    class="mt-8 inline-flex px-5 py-3 rounded-xl bg-ecBlue/10 text-ecBlue ring-1 ring-ecBlue/40 hover:bg-ecBlue/20 transition">Join
+                    the Community</a>
+            </div>
+            <div class="order-1 lg:order-2 rounded-3xl glass ring-1 ring-white/10 p-6">
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+                        <div class="text-2xl font-bold">AI</div>
+                        <div class="text-xs text-white/60">Workflows</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+                        <div class="text-2xl font-bold">SaaS</div>
+                        <div class="text-xs text-white/60">Playbooks</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+                        <div class="text-2xl font-bold">DEV</div>
+                        <div class="text-xs text-white/60">Guides</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+                        <div class="text-2xl font-bold">OPS</div>
+                        <div class="text-xs text-white/60">CI/CD</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+                        <div class="text-2xl font-bold">GROW</div>
+                        <div class="text-xs text-white/60">Go‑to‑Market</div>
+                    </div>
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 text-center">
+                        <div class="text-2xl font-bold">ETHOS</div>
+                        <div class="text-xs text-white/60">Build > Wait</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 sm:py-24 border-t border-white/10 bg-gradient-to-b from-[#0b1723] to-ecDark">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold">The future won’t wait. Why should you?</h2>
+            <p class="mt-4 text-white/80">Join EdgeCodersHub to learn, build, and launch faster — together.</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="https://www.patreon.com/c/Thiekshana" target="_blank"
+                    class="px-5 py-3 rounded-xl bg-ecBlue/10 text-ecBlue ring-1 ring-ecBlue/40 hover:bg-ecBlue/20 transition">Join
+                    the Hub</a>
+                <a href="#products" class="px-5 py-3 rounded-xl bg-ecOrange hover:bg-orange-500 transition">Discover
+                    Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+<footer class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-sm text-white/70">
+        
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            
+            <!-- Company Info -->
+            <div>
+                <div class="font-bold text-lg text-white mb-2">EdgeCodersHub</div>
+                <div class="text-white/50 mb-3">When tech falls, we rise.</div>
+                <div class="text-xs text-white/60 space-y-1">
+                    <div><strong>UEN:</strong> 53512731J</div>
+                    <div>Enterprise Software Solutions, IT Consulting</div>
+                    <div>& Digital Innovation</div>
+                </div>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <div class="font-semibold text-white mb-3">Contact Us</div>
+                <div class="text-xs text-white/60 space-y-2">
+                    <div class="flex items-start gap-2">
+                        <span>📍</span>
+                        <span>Blk 58 Bayshore Park<br>Singapore 469981</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>📞</span>
+                        <span>+65 96326936</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>✉️</span>
+                        <a href="mailto:admin@thiek.com" class="hover:text-white">admin@thiek.com</a>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🌐</span>
+                        <span>edgecodershub.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <div class="font-semibold text-white mb-3">Quick Links</div>
+                <nav class="flex flex-col gap-2 text-xs text-white/60">
+                    <a href="#about" class="hover:text-white transition-colors">About Us</a>
+                    <a href="#products" class="hover:text-white transition-colors">Products</a>
+                </nav>
+            </div>
+            
+        </div>
+        
+        <!-- Divider -->
+        <div class="border-t border-white/10 pt-6">
+            
+            <!-- Copyright & Credits -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+                <div class="text-center sm:text-left">
+                    <div>© <span id="year"></span> EdgeCodersHub</div>
+                    <div>All rights reserved. Registered in Singapore.</div>
+                </div>
+                <div class="text-center sm:text-right">
+                    Designed by <a href="https://www.linkedin.com/in/thiekshana" target="_blank"
+                        class="text-ecBlue hover:underline transition-colors">Thiek</a> with ♥️
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
