@@ -1,0 +1,334 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Calendar, Clock, CheckCircle, XCircle, Settings } from 'lucide-react';
+
+const styles = {
+  body: {
+    minHeight: '100vh',
+    backgroundColor: '#0A1628',
+    padding: '16px',
+    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    color: '#ffffff'
+  },
+  container: {
+    maxWidth: '1200px',
+    margin: '0 auto'
+  },
+  card: {
+    backgroundColor: '#1A2842',
+    borderRadius: '12px',
+    padding: '24px',
+    marginBottom: '24px',
+    border: '1px solid rgba(0, 217, 255, 0.2)',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
+  },
+  button: {
+    padding: '12px 24px',
+    borderRadius: '8px',
+    border: 'none',
+    cursor: 'pointer',
+    fontWeight: 600,
+    fontSize: '16px',
+    transition: 'all 0.2s'
+  } as React.CSSProperties,
+  buttonPrimary: {
+    backgroundColor: '#00D9FF',
+    color: '#0A1628'
+  },
+  buttonOrange: {
+    backgroundColor: '#FF6B00',
+    color: '#ffffff'
+  },
+  buttonSuccess: {
+    backgroundColor: '#10B981',
+    color: '#ffffff'
+  },
+  buttonDanger: {
+    backgroundColor: '#EF4444',
+    color: '#ffffff'
+  },
+  input: {
+    width: '100%',
+    padding: '12px',
+    backgroundColor: '#243049',
+    border: '1px solid rgba(0, 217, 255, 0.3)',
+    borderRadius: '8px',
+    color: '#ffffff',
+    fontSize: '16px',
+    outline: 'none'
+  },
+  logo: {
+    width: '40px',
+    height: '40px',
+    backgroundColor: '#00D9FF',
+    borderRadius: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#0A1628',
+    fontWeight: 'bold',
+    fontSize: '20px'
+  }
+};
+
+interface Booking {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  personType: string;
+  reason: string;
+  contactMethod: string;
+  date: string;
+  time: string;
+  status: string;
+  createdAt: string;
+}
+
+interface Contact {
+  id: string;
+  email: string;
+  phone: string;
+  tag: string;
+  addedAt: string;
+}
+
+export default function BookingSystem() {
+  const [view, setView] = useState<'public' | 'admin'>('public');
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    personType: '',
+    reason: '',
+    contactMethod: 'WhatsApp'
+  });
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [knownContacts, setKnownContacts] = useState<Contact[]>([]);
+  const [availability, setAvailability] = useState<any>({});
+  const [isKnownContact, setIsKnownContact] = useState(false);
+  const [adminPassword, setAdminPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [newContact, setNewContact] = useState({ email: '', phone: '', tag: '' });
+  const [webhookUrl, setWebhookUrl] = useState('');
+  const [tempWebhookUrl, setTempWebhookUrl] = useState('');
+  const [activeTab, setActiveTab] = useState('bookings');
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = () => {
+    try {
+      const bookingsData = localStorage.getItem('bookings');
+      const contactsData = localStorage.getItem('knownContacts');
+      const availabilityData = localStorage.getItem('availability');
+      const webhookData = localStorage.getItem('webhookUrl');
+      
+      if (bookingsData) setBookings(JSON.parse(bookingsData));
+      if (contactsData) setKnownContacts(JSON.parse(contactsData));
+      if (availabilityData) setAvailability(JSON.parse(availabilityData));
+      if (webhookData) {
+        setWebhookUrl(webhookData);
+        setTempWebhookUrl(webhookData);
+      }
+    } catch (error) {
+      console.log('No existing data, starting fresh');
+    }
+  };
+
+  const saveBookings = (data: Booking[]) => {
+    try {
+      localStorage.setItem('bookings', JSON.stringify(data));
+      setBookings(data);
+    } catch (error) {
+      console.error('Error saving bookings:', error);
+    }
+  };
+
+  const saveKnownContacts = (data: Contact[]) => {
+    try {
+      localStorage.setItem('knownContacts', JSON.stringify(data));
+      setKnownContacts(data);
+    } catch (error) {
+      console.error('Error saving contacts:', error);
+    }
+  };
+
+  const saveAvailability = (data: any) => {
+    try {
+      localStorage.setItem('availability', JSON.stringify(data));
+      setAvailability(data);
+    } catch (error) {
+      console.error('Error saving availability:', error);
+    }
+  };
+
+  const saveWebhookUrlData = (url: string) => {
+    try {
+      localStorage.setItem('webhookUrl', url);
+      setWebhookUrl(url);
+    } catch (error) {
+      console.error('Error saving webhook URL:', error);
+    }
+  };
+
+  const sendWebhook = async (eventType: string, data: any) => {
+    if (!webhookUrl) return;
+
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          event: eventType,
+          timestamp: new Date().toISOString(),
+          data: data
+        })
+      });
+    } catch (error) {
+      console.error('Webhook error:', error);
+    }
+  };
+
+  useEffect(() => {
+    const checkKnownContact = () => {
+      const isKnown = knownContacts.some(contact => 
+        contact.email.toLowerCase() === formData.email.toLowerCase() || 
+        contact.phone === formData.phone
+      );
+      setIsKnownContact(isKnown);
+    };
+    
+    if (formData.email || formData.phone) {
+      checkKnownContact();
+    }
+  }, [formData.email, formData.phone, knownContacts]);
+
+  const generateDates = () => {
+    const dates = [];
+    for (let i = 0; i < 14; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() + i);
+      dates.push(date);
+    }
+    return dates;
+  };
+
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let hour = 9; hour < 18; hour++) {
+      slots.push(`${hour.toString().padStart(2, '0')}:00`);
+      slots.push(`${hour.toString().padStart(2, '0')}:30`);
+    }
+    return slots;
+  };
+
+  const isSlotAvailable = (date: Date, time: string) => {
+    const dateStr = date.toISOString().split('T')[0];
+    const dayAvailability = availability[dateStr];
+    
+    if (!dayAvailability) return true;
+    if (dayAvailability.blocked) return false;
+    if (dayAvailability.blockedSlots && dayAvailability.blockedSlots.includes(time)) return false;
+    
+    const isBooked = bookings.some(b => 
+      b.status === 'accepted' && 
+      b.date === dateStr && 
+      b.time === time
+    );
+    
+    return !isBooked;
+  };
+
+  const handleSubmit = () => {
+    if (isKnownContact || !selectedDate || !selectedTime) return;
+
+    const newBooking: Booking = {
+      id: Date.now().toString(),
+      ...formData,
+      date: selectedDate.toISOString().split('T')[0],
+      time: selectedTime,
+      status: 'pending',
+      createdAt: new Date().toISOString()
+    };
+
+    saveBookings([...bookings, newBooking]);
+    sendWebhook('booking_created', newBooking);
+    
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      personType: '',
+      reason: '',
+      contactMethod: 'WhatsApp'
+    });
+    setSelectedDate(null);
+    setSelectedTime(null);
+    alert('Booking request submitted! You will receive a confirmation once reviewed.');
+  };
+
+  const handleBookingAction = (bookingId: string, action: string) => {
+    const booking = bookings.find(b => b.id === bookingId);
+    const updated = bookings.map(b => 
+      b.id === bookingId ? { ...b, status: action } : b
+    );
+    saveBookings(updated);
+    
+    sendWebhook(`booking_${action}`, {
+      ...booking,
+      status: action,
+      actionTimestamp: new Date().toISOString()
+    });
+  };
+
+  const addKnownContact = () => {
+    if (!newContact.email && !newContact.phone) return;
+    
+    const contact: Contact = {
+      id: Date.now().toString(),
+      email: newContact.email,
+      phone: newContact.phone,
+      tag: newContact.tag,
+      addedAt: new Date().toISOString()
+    };
+    
+    saveKnownContacts([...knownContacts, contact]);
+    setNewContact({ email: '', phone: '', tag: '' });
+  };
+
+  const removeKnownContact = (contactId: string) => {
+    const updated = knownContacts.filter(c => c.id !== contactId);
+    saveKnownContacts(updated);
+  };
+
+  const toggleDateAvailability = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    const newAvailability = {
+      ...availability,
+      [dateStr]: {
+        blocked: !availability[dateStr]?.blocked,
+        blockedSlots: availability[dateStr]?.blockedSlots || []
+      }
+    };
+    saveAvailability(newAvailability);
+  };
+
+  const handleAdminLogin = () => {
+    if (adminPassword === 'admin123') {
+      setIsAuthenticated(true);
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
+  const saveWebhookSettings = () => {
+    saveWebhookUrlData(tempWebhookUrl);
+    alert('Webhook URL saved successfully!');
+  };
