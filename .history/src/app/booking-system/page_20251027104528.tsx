@@ -481,7 +481,7 @@ export default function BookingSystem() {
         return (
             <div style={styles.body}>
                 <div style={styles.container}>
-                   {/* Navigation Bar */}
+                    {/* Navigation Bar */}
 <div style={{
   ...styles.card,
   display: 'flex',
@@ -491,7 +491,7 @@ export default function BookingSystem() {
 }}>
   {/* Left Side - Logo & Title */}
   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-    <div><img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" /></div>
+    <div style={styles.logo}>EC</div>
     <div>
       <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>
         EdgeCodersHub
@@ -505,7 +505,7 @@ export default function BookingSystem() {
   {/* Right Side - Navigation Buttons */}
   <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
     
-     <a href="https://www.edgecodershub.com"
+      href="https://www.edgecodershub.com"
       style={{
         padding: '10px 20px',
         backgroundColor: 'transparent',

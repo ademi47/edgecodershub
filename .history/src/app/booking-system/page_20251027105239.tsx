@@ -481,343 +481,343 @@ export default function BookingSystem() {
         return (
             <div style={styles.body}>
                 <div style={styles.container}>
-                   {/* Navigation Bar */}
-<div style={{
-  ...styles.card,
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '16px 24px'
-}}>
-  {/* Left Side - Logo & Title */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-    <div><img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" /></div>
-    <div>
-      <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>
-        EdgeCodersHub
-      </h1>
-      <p style={{ fontSize: '14px', color: '#B0B0B0', margin: 0 }}>
-        Schedule a call with me
-      </p>
-    </div>
-  </div>
-  
-  {/* Right Side - Navigation Buttons */}
-  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-    
-     <a href="https://www.edgecodershub.com"
-      style={{
-        padding: '10px 20px',
-        backgroundColor: 'transparent',
-        color: '#00D9FF',
-        border: '2px solid #00D9FF',
-        borderRadius: '8px',
-        textDecoration: 'none',
-        fontWeight: '600',
-        fontSize: '14px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        transition: 'all 0.2s'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#00D9FF';
-        e.currentTarget.style.color = '#0A1628';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = 'transparent';
-        e.currentTarget.style.color = '#00D9FF';
-      }}
-    >
-      🏠 Visit Our Site
-    </a>
-    
-    <button
-      onClick={() => {
-        console.log('Switching to admin view');
-        setView('admin');
-      }}
-      style={{
-        padding: '10px 20px',
-        backgroundColor: '#FF6B00',
-        color: '#ffffff',
-        border: 'none',
-        borderRadius: '8px',
-        fontWeight: '600',
-        fontSize: '14px',
-        cursor: 'pointer',
-        transition: 'all 0.2s'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#FF5500';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = '#FF6B00';
-      }}
-    >
-      🔐 Admin
-    </button>
-  </div>
-</div>
 
-                    {isKnownContact && (formData.email || formData.phone) && (
-                        <div style={{
-                            ...styles.card,
-                            border: '2px solid #00D9FF'
-                        }}>
-                            <div style={{ display: 'flex', gap: '12px' }}>
-                                <CheckCircle color="#00D9FF" size={24} />
-                                <div>
-                                    <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>
-                                        Hey there! 👋
-                                    </h3>
-                                    <p style={{ color: '#B0B0B0' }}>
-                                        You don&apos;t need to book through this system! I&apos;ll get back to you directly soon.
-                                    </p>
-                                </div>
+                    {/* Navigation Bar */}
+                    <div style={{
+                        backgroundColor: '#1A2842',
+                        borderRadius: '12px',
+                        padding: '16px 24px',
+                        marginBottom: '24px',
+                        border: '1px solid rgba(0, 217, 255, 0.2)',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                width: '40px',
+                                height: '40px',
+                                backgroundColor: '#00D9FF',
+                                borderRadius: '8px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: '#0A1628',
+                                fontWeight: 'bold',
+                                fontSize: '20px'
+                            }}>EC</div>
+                            <div>
+                                <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>
+                                    EdgeCodersHub
+                                </h1>
+                                <p style={{ fontSize: '14px', color: '#B0B0B0', margin: 0 }}>
+                                    Schedule a call with me
+                                </p>
                             </div>
                         </div>
-                    )}
 
-                    {!isKnownContact && (
-                        <>
+                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+
+                            href="https://www.edgecodershub.com"
+                            style={{
+                                padding: '10px 20px',
+                                backgroundColor: 'transparent',
+                                color: '#00D9FF',
+                                border: '2px solid #00D9FF',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                transition: 'all 0.2s'
+                            }}
+            >
+                            Visit Our Site
+                        </a>
+
+                        <button
+                            onClick={() => {
+                                console.log('Switching to admin view');
+                                setView('admin');
+                            }}
+                            style={{
+                                padding: '10px 20px',
+                                backgroundColor: '#FF6B00',
+                                color: '#ffffff',
+                                border: 'none',
+                                borderRadius: '8px',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s'
+                            }}
+                        >
+                            Admin
+                        </button>
+                    </div>
+                </div>
+
+                {isKnownContact && (formData.email || formData.phone) && (
+                    <div style={{
+                        ...styles.card,
+                        border: '2px solid #00D9FF'
+                    }}>
+                        <div style={{ display: 'flex', gap: '12px' }}>
+                            <CheckCircle color="#00D9FF" size={24} />
+                            <div>
+                                <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>
+                                    Hey there! 👋
+                                </h3>
+                                <p style={{ color: '#B0B0B0' }}>
+                                    You don&apos;t need to book through this system! I&apos;ll get back to you directly soon.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {!isKnownContact && (
+                    <>
+                        <div style={styles.card}>
+                            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Calendar color="#00D9FF" size={24} />
+                                Select a Date
+                            </h2>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px' }}>
+                                {generateDates().map((date, idx) => {
+                                    const isAvailable = !availability[date.toISOString().split('T')[0]]?.blocked;
+                                    const isSelected = selectedDate?.toDateString() === date.toDateString();
+
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={() => isAvailable && setSelectedDate(date)}
+                                            disabled={!isAvailable}
+                                            style={{
+                                                padding: '12px',
+                                                borderRadius: '8px',
+                                                border: 'none',
+                                                cursor: isAvailable ? 'pointer' : 'not-allowed',
+                                                backgroundColor: isSelected ? '#00D9FF' : isAvailable ? '#243049' : '#1A2030',
+                                                color: isSelected ? '#0A1628' : isAvailable ? '#ffffff' : '#666',
+                                                textAlign: 'center',
+                                                fontWeight: isSelected ? 'bold' : 'normal'
+                                            }}
+                                        >
+                                            <div style={{ fontSize: '12px' }}>{date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                                            <div style={{ fontWeight: '600' }}>{date.getDate()}</div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {selectedDate && (
                             <div style={styles.card}>
                                 <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                    <Calendar color="#00D9FF" size={24} />
-                                    Select a Date
+                                    <Clock color="#00D9FF" size={24} />
+                                    Select a Time
                                 </h2>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px' }}>
-                                    {generateDates().map((date, idx) => {
-                                        const isAvailable = !availability[date.toISOString().split('T')[0]]?.blocked;
-                                        const isSelected = selectedDate?.toDateString() === date.toDateString();
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                                    {generateTimeSlots().map((time, idx) => {
+                                        const available = isSlotAvailable(selectedDate, time);
+                                        const isSelected = selectedTime === time;
 
                                         return (
                                             <button
                                                 key={idx}
-                                                onClick={() => isAvailable && setSelectedDate(date)}
-                                                disabled={!isAvailable}
+                                                onClick={() => available && setSelectedTime(time)}
+                                                disabled={!available}
                                                 style={{
                                                     padding: '12px',
                                                     borderRadius: '8px',
                                                     border: 'none',
-                                                    cursor: isAvailable ? 'pointer' : 'not-allowed',
-                                                    backgroundColor: isSelected ? '#00D9FF' : isAvailable ? '#243049' : '#1A2030',
-                                                    color: isSelected ? '#0A1628' : isAvailable ? '#ffffff' : '#666',
-                                                    textAlign: 'center',
-                                                    fontWeight: isSelected ? 'bold' : 'normal'
+                                                    cursor: available ? 'pointer' : 'not-allowed',
+                                                    backgroundColor: isSelected ? '#00D9FF' : available ? '#243049' : '#1A2030',
+                                                    color: isSelected ? '#0A1628' : available ? '#ffffff' : '#666',
+                                                    fontWeight: isSelected ? 'bold' : 'normal',
+                                                    position: 'relative'
                                                 }}
                                             >
-                                                <div style={{ fontSize: '12px' }}>{date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
-                                                <div style={{ fontWeight: '600' }}>{date.getDate()}</div>
+                                                {time}
+                                                {!available && (
+                                                    <div style={{ fontSize: '10px', marginTop: '2px', color: '#EF4444' }}>
+                                                        Booked
+                                                    </div>
+                                                )}
                                             </button>
                                         );
                                     })}
                                 </div>
                             </div>
+                        )}
 
-                            {selectedDate && (
-                                <div style={styles.card}>
-                                    <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                        <Clock color="#00D9FF" size={24} />
-                                        Select a Time
-                                    </h2>
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-                                        {generateTimeSlots().map((time, idx) => {
-                                            const available = isSlotAvailable(selectedDate, time);
-                                            const isSelected = selectedTime === time;
-
-                                            return (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => available && setSelectedTime(time)}
-                                                    disabled={!available}
-                                                    style={{
-                                                        padding: '12px',
-                                                        borderRadius: '8px',
-                                                        border: 'none',
-                                                        cursor: available ? 'pointer' : 'not-allowed',
-                                                        backgroundColor: isSelected ? '#00D9FF' : available ? '#243049' : '#1A2030',
-                                                        color: isSelected ? '#0A1628' : available ? '#ffffff' : '#666',
-                                                        fontWeight: isSelected ? 'bold' : 'normal',
-                                                        position: 'relative'
-                                                    }}
-                                                >
-                                                    {time}
-                                                    {!available && (
-                                                        <div style={{ fontSize: '10px', marginTop: '2px', color: '#EF4444' }}>
-                                                            Booked
-                                                        </div>
-                                                    )}
-                                                </button>
-                                            );
-                                        })}
+                        {selectedDate && selectedTime && (
+                            <div style={styles.card}>
+                                <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '16px' }}>Your Details</h2>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
+                                            Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            style={styles.input}
+                                        />
                                     </div>
-                                </div>
-                            )}
 
-                            {selectedDate && selectedTime && (
-                                <div style={styles.card}>
-                                    <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '16px' }}>Your Details</h2>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                        <div>
-                                            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
-                                                Name *
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={formData.name}
-                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                style={styles.input}
-                                            />
-                                        </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
+                                            Email Address *
+                                        </label>
+                                        <input
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            style={styles.input}
+                                        />
+                                    </div>
 
-                                        <div>
-                                            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
-                                                Email Address *
-                                            </label>
-                                            <input
-                                                type="email"
-                                                value={formData.email}
-                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                style={styles.input}
-                                            />
-                                        </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
+                                            Phone Number (WhatsApp) *
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            value={formData.phone}
+                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            style={styles.input}
+                                        />
+                                    </div>
 
-                                        <div>
-                                            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
-                                                Phone Number (WhatsApp) *
-                                            </label>
-                                            <input
-                                                type="tel"
-                                                value={formData.phone}
-                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                style={styles.input}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
-                                                I am a... *
-                                            </label>
-                                            <select
-                                                value={formData.personType}
-                                                onChange={(e) => setFormData({ ...formData, personType: e.target.value })}
-                                                style={styles.input}
-                                            >
-                                                <option value="">Select...</option>
-                                                <option value="Developer">Developer</option>
-                                                <option value="Recruiter">Recruiter</option>
-                                                <option value="Business Partner">Business Partner</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
-                                                Reason for Meeting *
-                                            </label>
-                                            <textarea
-                                                value={formData.reason}
-                                                onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                                                rows={4}
-                                                style={styles.input}
-                                                placeholder="Please briefly describe what you'd like to discuss..."
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
-                                                Preferred Contact Method *
-                                            </label>
-                                            <select
-                                                value={formData.contactMethod}
-                                                onChange={(e) => setFormData({ ...formData, contactMethod: e.target.value })}
-                                                style={styles.input}
-                                            >
-                                                <option value="WhatsApp">WhatsApp Call</option>
-                                                <option value="Online Meeting">Online Meeting (Zoom/Teams)</option>
-                                            </select>
-                                        </div>
-
-                                        <button
-                                            onClick={handleSubmit}
-                                            style={{
-                                                ...styles.button,
-                                                ...styles.buttonOrange,
-                                                width: '100%',
-                                                marginTop: '8px'
-                                            }}
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
+                                            I am a... *
+                                        </label>
+                                        <select
+                                            value={formData.personType}
+                                            onChange={(e) => setFormData({ ...formData, personType: e.target.value })}
+                                            style={styles.input}
                                         >
-                                            Submit Booking Request
-                                        </button>
-                                        {/* Booking in Progress Overlay */}
-                                        {isSubmitting && (
-                                            <div style={{
-                                                position: 'fixed',
-                                                top: 0,
-                                                left: 0,
-                                                right: 0,
-                                                bottom: 0,
-                                                backgroundColor: 'rgba(10, 22, 40, 0.95)',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                zIndex: 9999,
-                                                backdropFilter: 'blur(5px)'
-                                            }}>
-                                                <div style={{
-                                                    backgroundColor: '#1A2842',
-                                                    borderRadius: '16px',
-                                                    padding: '48px',
-                                                    textAlign: 'center',
-                                                    border: '2px solid #00D9FF',
-                                                    boxShadow: '0 8px 32px rgba(0, 217, 255, 0.3)',
-                                                    maxWidth: '400px'
-                                                }}>
-                                                    {/* Animated Spinner */}
-                                                    <div style={{
-                                                        width: '64px',
-                                                        height: '64px',
-                                                        border: '4px solid rgba(0, 217, 255, 0.2)',
-                                                        borderTopColor: '#00D9FF',
-                                                        borderRadius: '50%',
-                                                        margin: '0 auto 24px',
-                                                        animation: 'spin 0.8s linear infinite'
-                                                    }} />
-
-                                                    {/* Message */}
-                                                    <h2 style={{
-                                                        fontSize: '24px',
-                                                        fontWeight: 'bold',
-                                                        color: '#00D9FF',
-                                                        marginBottom: '12px'
-                                                    }}>
-                                                        Booking in Progress
-                                                    </h2>
-                                                    <p style={{
-                                                        fontSize: '16px',
-                                                        color: '#B0B0B0',
-                                                        marginBottom: '8px'
-                                                    }}>
-                                                        Please wait while we process your request...
-                                                    </p>
-                                                    <p style={{
-                                                        fontSize: '14px',
-                                                        color: '#666',
-                                                    }}>
-                                                        Do not close this page
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )}
+                                            <option value="">Select...</option>
+                                            <option value="Developer">Developer</option>
+                                            <option value="Recruiter">Recruiter</option>
+                                            <option value="Business Partner">Business Partner</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
+
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
+                                            Reason for Meeting *
+                                        </label>
+                                        <textarea
+                                            value={formData.reason}
+                                            onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
+                                            rows={4}
+                                            style={styles.input}
+                                            placeholder="Please briefly describe what you'd like to discuss..."
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#B0B0B0', marginBottom: '4px' }}>
+                                            Preferred Contact Method *
+                                        </label>
+                                        <select
+                                            value={formData.contactMethod}
+                                            onChange={(e) => setFormData({ ...formData, contactMethod: e.target.value })}
+                                            style={styles.input}
+                                        >
+                                            <option value="WhatsApp">WhatsApp Call</option>
+                                            <option value="Online Meeting">Online Meeting (Zoom/Teams)</option>
+                                        </select>
+                                    </div>
+
+                                    <button
+                                        onClick={handleSubmit}
+                                        style={{
+                                            ...styles.button,
+                                            ...styles.buttonOrange,
+                                            width: '100%',
+                                            marginTop: '8px'
+                                        }}
+                                    >
+                                        Submit Booking Request
+                                    </button>
+                                    {/* Booking in Progress Overlay */}
+                                    {isSubmitting && (
+                                        <div style={{
+                                            position: 'fixed',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            backgroundColor: 'rgba(10, 22, 40, 0.95)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            zIndex: 9999,
+                                            backdropFilter: 'blur(5px)'
+                                        }}>
+                                            <div style={{
+                                                backgroundColor: '#1A2842',
+                                                borderRadius: '16px',
+                                                padding: '48px',
+                                                textAlign: 'center',
+                                                border: '2px solid #00D9FF',
+                                                boxShadow: '0 8px 32px rgba(0, 217, 255, 0.3)',
+                                                maxWidth: '400px'
+                                            }}>
+                                                {/* Animated Spinner */}
+                                                <div style={{
+                                                    width: '64px',
+                                                    height: '64px',
+                                                    border: '4px solid rgba(0, 217, 255, 0.2)',
+                                                    borderTopColor: '#00D9FF',
+                                                    borderRadius: '50%',
+                                                    margin: '0 auto 24px',
+                                                    animation: 'spin 0.8s linear infinite'
+                                                }} />
+
+                                                {/* Message */}
+                                                <h2 style={{
+                                                    fontSize: '24px',
+                                                    fontWeight: 'bold',
+                                                    color: '#00D9FF',
+                                                    marginBottom: '12px'
+                                                }}>
+                                                    Booking in Progress
+                                                </h2>
+                                                <p style={{
+                                                    fontSize: '16px',
+                                                    color: '#B0B0B0',
+                                                    marginBottom: '8px'
+                                                }}>
+                                                    Please wait while we process your request...
+                                                </p>
+                                                <p style={{
+                                                    fontSize: '14px',
+                                                    color: '#666',
+                                                }}>
+                                                    Do not close this page
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                        </>
-                    )}
-                </div>
-                
+                            </div>
+                        )}
+                    </>
+                )}
             </div>
+                
+            </div >
         );
     }
 

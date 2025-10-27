@@ -481,84 +481,29 @@ export default function BookingSystem() {
         return (
             <div style={styles.body}>
                 <div style={styles.container}>
-                   {/* Navigation Bar */}
-<div style={{
-  ...styles.card,
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '16px 24px'
-}}>
-  {/* Left Side - Logo & Title */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-    <div><img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" /></div>
-    <div>
-      <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>
-        EdgeCodersHub
-      </h1>
-      <p style={{ fontSize: '14px', color: '#B0B0B0', margin: 0 }}>
-        Schedule a call with me
-      </p>
-    </div>
-  </div>
-  
-  {/* Right Side - Navigation Buttons */}
-  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-    
-     <a href="https://www.edgecodershub.com"
-      style={{
-        padding: '10px 20px',
-        backgroundColor: 'transparent',
-        color: '#00D9FF',
-        border: '2px solid #00D9FF',
-        borderRadius: '8px',
-        textDecoration: 'none',
-        fontWeight: '600',
-        fontSize: '14px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        transition: 'all 0.2s'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#00D9FF';
-        e.currentTarget.style.color = '#0A1628';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = 'transparent';
-        e.currentTarget.style.color = '#00D9FF';
-      }}
-    >
-      🏠 Visit Our Site
-    </a>
-    
-    <button
-      onClick={() => {
-        console.log('Switching to admin view');
-        setView('admin');
-      }}
-      style={{
-        padding: '10px 20px',
-        backgroundColor: '#FF6B00',
-        color: '#ffffff',
-        border: 'none',
-        borderRadius: '8px',
-        fontWeight: '600',
-        fontSize: '14px',
-        cursor: 'pointer',
-        transition: 'all 0.2s'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#FF5500';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = '#FF6B00';
-      }}
-    >
-      🔐 Admin
-    </button>
-  </div>
-</div>
+                    <div style={styles.card}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                            <img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" />
+                            
+                            <h1 style={{ fontSize: '32px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>EdgeCodersHub</h1>
+                        </div>
+                        <p style={{ fontSize: '18px', color: '#B0B0B0', marginBottom: '16px' }}>Schedule a call with Thiek</p>
+                        <button
+                            onClick={() => {
+                                console.log('Switching to admin view');
+                                setView('admin');
+                            }}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: '#00D9FF',
+                                cursor: 'pointer',
+                                fontSize: '14px'
+                            }}
+                        >
+                            Admin Access
+                        </button>
+                    </div>
 
                     {isKnownContact && (formData.email || formData.phone) && (
                         <div style={{

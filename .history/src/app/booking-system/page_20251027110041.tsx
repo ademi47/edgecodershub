@@ -491,7 +491,7 @@ export default function BookingSystem() {
 }}>
   {/* Left Side - Logo & Title */}
   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-    <div><img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" /></div>
+    <div style={styles.logo}>EC</div>
     <div>
       <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>
         EdgeCodersHub
