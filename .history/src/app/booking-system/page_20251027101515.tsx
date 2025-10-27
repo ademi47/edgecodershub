@@ -338,13 +338,13 @@ export default function BookingSystem() {
     const handleSubmit = async () => {
         if (isSubmitting || isKnownContact || !selectedDate || !selectedTime) return;
 
-        // Validate form fields
-        if (!formData.name || !formData.email || !formData.phone || !formData.personType || !formData.reason) {
-            alert('Please fill in all required fields');
-            return;
-        }
+          // Validate form fields
+  if (!formData.name || !formData.email || !formData.phone || !formData.personType || !formData.reason) {
+    alert('Please fill in all required fields');
+    return;
+  }
 
-        setIsSubmitting(true); // Disable button
+  setIsSubmitting(true); // Disable button
 
         const newBooking: Booking = {
             id: Date.now().toString(),
@@ -394,8 +394,8 @@ export default function BookingSystem() {
         }
 
         finally {
-            setIsSubmitting(false); // Re-enable button
-        }
+    setIsSubmitting(false); // Re-enable button
+  }
     };
 
     const handleBookingAction = async (bookingId: string, action: string) => {
@@ -483,7 +483,7 @@ export default function BookingSystem() {
                 <div style={styles.container}>
                     <div style={styles.card}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                            <img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" />
+                             <img src="./siteLogo.png" alt="EdgeCodersHub Logo" class="h-8 w-auto" />
                             <h1 style={{ fontSize: '32px', fontWeight: 'bold', margin: 0, color: '#ffffff' }}>EdgeCodersHub</h1>
                         </div>
                         <p style={{ fontSize: '18px', color: '#B0B0B0', marginBottom: '16px' }}>Schedule a call with Thiek</p>
