@@ -105,7 +105,7 @@ export default function BookingSystem() {
         phone: '',
         personType: '',
         reason: '',
-        contactMethod: ''
+        contactMethod: 'WhatsApp'
     });
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [knownContacts, setKnownContacts] = useState<Contact[]>([]);
@@ -118,7 +118,7 @@ export default function BookingSystem() {
     const [tempWebhookUrl, setTempWebhookUrl] = useState('');
     const [activeTab, setActiveTab] = useState('bookings');
 
-    const N8N_BASE_URL = 'https://n8n.edgecodershub.com/webhook';
+    const N8N_BASE_URL = 'https://n8n.edgecodershub.com/webhook-test';
 
     useEffect(() => {
         loadData();
