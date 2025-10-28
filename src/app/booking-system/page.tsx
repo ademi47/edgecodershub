@@ -105,7 +105,7 @@ export default function BookingSystem() {
         phone: '',
         personType: '',
         reason: '',
-        contactMethod: 'WhatsApp'
+        contactMethod: ''
     });
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [knownContacts, setKnownContacts] = useState<Contact[]>([]);
@@ -383,7 +383,7 @@ export default function BookingSystem() {
                 phone: '',
                 personType: '',
                 reason: '',
-                contactMethod: 'WhatsApp'
+                contactMethod: ''
             });
             setSelectedDate(null);
             setSelectedTime(null);
@@ -735,7 +735,7 @@ export default function BookingSystem() {
                                                 style={styles.input}
                                             >
                                                 <option value="WhatsApp">WhatsApp Call</option>
-                                                <option value="Online Meeting">Online Meeting (Zoom/Teams)</option>
+                                                <option value="OnlineMeeting">Online Meeting (Zoom/Teams)</option>
                                             </select>
                                         </div>
 
