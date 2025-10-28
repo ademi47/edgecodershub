@@ -735,7 +735,7 @@ export default function BookingSystem() {
                                                 style={styles.input}
                                             >
                                                 <option value="WhatsApp">WhatsApp Call</option>
-                                                <option value="OnlineMeeting">Online Meeting (Zoom/Teams)</option>
+                                                <option value="OnlineMeeting">Online Meeting (Google)</option>
                                             </select>
                                         </div>
 
