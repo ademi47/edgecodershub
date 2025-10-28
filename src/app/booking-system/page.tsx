@@ -815,6 +815,161 @@ export default function BookingSystem() {
                             )}
                         </>
                     )}
+                    <div style={{
+    background: 'linear-gradient(135deg, #00D9FF 0%, #0077FF 100%)',
+    borderRadius: '16px',
+    padding: '48px 32px',
+    textAlign: 'center',
+    marginTop: '48px',
+    marginBottom: '32px'
+}}>
+    <h2 style={{
+        fontSize: '32px',
+        fontWeight: 'bold',
+        marginBottom: '16px',
+        color: '#ffffff'
+    }}>
+        Ready to Streamline Your Scheduling?
+    </h2>
+    <p style={{
+        fontSize: '18px',
+        marginBottom: '32px',
+        color: 'rgba(255, 255, 255, 0.9)',
+        maxWidth: '600px',
+        margin: '0 auto 32px'
+    }}>
+        Integrate our booking system into your business workflow and start saving time today
+    </p>
+    <div style={{
+        display: 'flex',
+        gap: '16px',
+        justifyContent: 'center',
+        flexWrap: 'wrap'
+    }}>
+        <button
+            onClick={() => window.location.href = 'mailto:admin@edgecodershub.com'}
+            style={{
+                backgroundColor: '#ffffff',
+                color: '#0077FF',
+                padding: '14px 32px',
+                borderRadius: '8px',
+                fontWeight: '600',
+                fontSize: '16px',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'transform 0.2s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        >
+            Schedule a Demo
+        </button>
+       
+    </div>
+</div>
+{/* FAQ / Guarantee Section */}
+<div style={{
+    marginTop: '32px',
+    marginBottom: '48px',
+    textAlign: 'center'
+}}>
+    <div style={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        gap: '16px',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }}>
+ 
+
+        <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            backgroundColor: '#1A2842',
+            padding: '12px 24px',
+            borderRadius: '24px',
+            border: '1px solid rgba(0, 217, 255, 0.2)'
+        }}>
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    stroke="#10B981"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+            <span style={{ color: '#B0B0B0', fontSize: '14px' }}>
+                No setup fees
+            </span>
+        </div>
+
+        <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            backgroundColor: '#1A2842',
+            padding: '12px 24px',
+            borderRadius: '24px',
+            border: '1px solid rgba(0, 217, 255, 0.2)'
+        }}>
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    stroke="#10B981"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+            <span style={{ color: '#B0B0B0', fontSize: '14px' }}>
+                Cancel anytime
+            </span>
+        </div>
+
+        <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            backgroundColor: '#1A2842',
+            padding: '12px 24px',
+            borderRadius: '24px',
+            border: '1px solid rgba(0, 217, 255, 0.2)'
+        }}>
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    stroke="#10B981"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+            <span style={{ color: '#B0B0B0', fontSize: '14px' }}>
+                Ready in 2-7 days
+            </span>
+        </div>
+    </div>
+</div>
                 </div>
                 
             </div>
@@ -1220,9 +1375,14 @@ export default function BookingSystem() {
                                 </div>
                             </div>
                         )}
+               
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </div>
+        
     );
 }
