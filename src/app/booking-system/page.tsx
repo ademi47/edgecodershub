@@ -118,7 +118,7 @@ export default function BookingSystem() {
     const [tempWebhookUrl, setTempWebhookUrl] = useState('');
     const [activeTab, setActiveTab] = useState('bookings');
 
-    const N8N_BASE_URL = 'https://n8n.edgecodershub.com/webhook-test';
+    const N8N_BASE_URL = 'https://n8n.edgecodershub.com/webhook';
 
     useEffect(() => {
         loadData();
